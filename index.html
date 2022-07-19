@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="style.css">
+    <title>AhorrADAs</title>
+</head>
+<body>
+    
+    <!-- NAV -->
+    <header>
+        <nav class="navbar is-danger" role="navigation" aria-label="main navigation" >
+            <div class="navbar-brand">
+              <a class="navbar-item titulo">
+                <i class="fa-solid fa-wallet"></i> 
+                <span class="span-titulo">AhorrADAs</span> 
+              </a>
+          
+              <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample" id="menu-burger">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+              </a>
+            </div>
+
+          
+            <div id="navbarBasicExample" class="navbar-menu">
+              <div class="navbar-end">
+                <a class="navbar-item" id="btn-balance">
+                    <i class="fa-solid fa-chart-line"></i>
+                    Balance
+                </a>
+          
+                <a class="navbar-item" id="btn-categorias">
+                    <i class="fa-solid fa-tag"></i>
+                    Categorías
+                </a>
+
+                <a class="navbar-item" id="btn-reportes">
+                    <i class="fa-solid fa-chart-pie"></i>
+                    Reportes
+                </a>
+              </div>
+              </div>
+            </div>
+
+            <!-- nav burger -->
+            <div class="oculto" id="div-burger">
+                <a class="navbar-item" id="btn-balance2">
+                    <i class="fa-solid fa-chart-line"></i>
+                    Balance
+                </a>
+          
+                <a class="navbar-item" id="btn-categorias2">
+                    <i class="fa-solid fa-tag"></i>
+                    Categorías
+                </a>
+
+                <a class="navbar-item" id="btn-reportes2">
+                    <i class="fa-solid fa-chart-pie"></i>
+                    Reportes
+                </a>
+            </div>
+          </nav>
+    </header>
+
+
+    <!-- SECTION DE BALANCE -->
+    <section id="section-balance">
+        <h2>Balance</h2>
+    </section>
+
+    <!-- SECTION DE CATEGORÍAS -->
+    <section id="section-categorias" class="oculto">
+        <h2>Categorías</h2>
+    </section>
+
+    <!-- SECTION DE REPORTES -->
+    <section id="section-reportes" class="oculto">
+        <h2>Reportes</h2>
+    </section>
+
+
+
+
+    
+    <script src="app.js"></script>
+</body>
+</html>
