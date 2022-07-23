@@ -33,6 +33,54 @@ i{
     background-color: white;
 }
 
+/* ----------------------------------
+        SECTION DE BALANCE
+---------------------------------- */
+.uno{
+    background-color: aqua;
+    height: 100vh;
+    display: flex;
+}
+
+.dos{
+    background-color:brown;
+    height: 90vh;
+}
+
+.tres{
+    background-color:darkgray;
+    height: 90vh;
+}
+
+.cuatro{
+    height: 38%;
+    background-color: white;
+    border-radius: 5%;
+
+}
+
+.cinco{
+    background-color: white;
+    margin-top: 2%;
+    height: 60%;
+    border-radius: 5%;
+}
+
+.seis{
+    background-color: black;
+}
+
+h2{
+    font-size: 30px;
+    font-weight: 900;
+}
+
+img{
+    max-width: 400px;
+}
+
+
+
 /*-------------------
     media query
 -------------------*/

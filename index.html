@@ -11,7 +11,9 @@
 </head>
 <body>
     
-    <!-- NAV -->
+    <!--------------------------
+               NAV 
+    --------------------------->
     <header>
         <nav class="navbar is-danger" role="navigation" aria-label="main navigation" >
             <div class="navbar-brand">
@@ -27,7 +29,6 @@
               </a>
             </div>
 
-          
             <div id="navbarBasicExample" class="navbar-menu">
               <div class="navbar-end">
                 <a class="navbar-item" id="btn-balance">
@@ -69,17 +70,106 @@
     </header>
 
 
-    <!-- SECTION DE BALANCE -->
+    <!------------------------------
+         SECTION DE BALANCE 
+    ------------------------------->
     <section id="section-balance">
-        <h2>Balance</h2>
+        <div class="column uno ">
+
+            <div class="column tres is-4">
+             <!-- balance -->
+                <div class="column cuatro">
+                    <h2>Balance</h2>
+                    <div>
+                        <p>Ganancias</p>
+                        <span>+$0</span>
+                    </div>
+
+                    <div>
+                        <p>Gastos</p>
+                        <span>-$0</span>
+                    </div>
+
+                    <div>
+                        <p>Total</p>
+                        <span>$0</span>
+                    </div>
+                </div>
+
+             <!-- filtros -->
+                <div class="column cinco">
+                    <div>
+                      <h2>Filtros</h2>
+                      <button>Ocultar filtros</button>  
+                    </div>
+                    
+                    <div>
+                        <h3>Tipo</h3>
+                        <select name="" id="">
+                            <option value="todos">Todos</option>
+                            <option value="gastos">Gastos</option>
+                            <option value="ganancia">Ganancias</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <h3>Categoría</h3>
+                        <select name="" id="">
+                            <option value="todas">Todas</option>
+                            <option value="comida">Comida</option>
+                            <option value="servicios">Servicios</option>
+                            <option value="salida">Salidas</option>
+                            <option value="educacion">Educación</option>
+                            <option value="transporte">Transporte</option>
+                            <option value="trabajo">Trabajo</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <h3>Desde</h3>
+                        <input type="date" name="" id="">
+                    </div>
+
+                    <div>
+                        <h3>Ordenar por</h3>
+                        <select name="" id="">
+                            <option value="">Más recientes</option>
+                            <option value="">Menos recientes</option>
+                            <option value="">Mayor monto</option>
+                            <option value="">Menor monto</option>
+                            <option value="">A/Z</option>
+                            <option value="">Z/A</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+         <!-- operaciones -->
+            <div class="column dos is-8">
+
+                <div class="column seis">
+                    <h2>Operaciones</h2>
+                    <button> + Nueva operación</button>
+                </div>
+
+                <div>
+                    <img src="imagenes/money.png" alt="imagen de dinero, imagen de decoración">
+                </div>
+            </div>
+        </div>
     </section>
 
-    <!-- SECTION DE CATEGORÍAS -->
+
+    <!--------------------------------
+        SECTION DE CATEGORÍAS 
+    --------------------------------->
     <section id="section-categorias" class="oculto">
         <h2>Categorías</h2>
     </section>
 
-    <!-- SECTION DE REPORTES -->
+    <!--------------------------------
+        SECTION DE REPORTES 
+    --------------------------------->
     <section id="section-reportes" class="oculto">
         <h2>Reportes</h2>
     </section>
