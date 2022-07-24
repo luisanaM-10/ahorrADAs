@@ -74,33 +74,33 @@
          SECTION DE BALANCE 
     ------------------------------->
     <section id="section-balance">
-        <div class="column uno ">
+        <div class="column contenedor-section">
 
-            <div class="column tres is-4">
+            <div class="column is-3 div-balance-filtros">
              <!-- balance -->
-                <div class="column cuatro">
+                <div class="column is-11 div-balance">
                     <h2>Balance</h2>
-                    <div>
+                    <div class="flex-contenedor ">
                         <p>Ganancias</p>
-                        <span>+$0</span>
+                        <span class="span-ganancias">+$0</span>
                     </div>
 
-                    <div>
+                    <div class="flex-contenedor">
                         <p>Gastos</p>
-                        <span>-$0</span>
+                        <span class="span-gastos">-$0</span>
                     </div>
 
-                    <div>
-                        <p>Total</p>
-                        <span>$0</span>
+                    <div class="flex-contenedor">
+                        <p id="total">Total</p>
+                        <span class="span-total">$0</span>
                     </div>
                 </div>
 
              <!-- filtros -->
-                <div class="column cinco">
-                    <div>
+                <div class="column is-11 div-filtro">
+                    <div class="flex-contenedor">
                       <h2>Filtros</h2>
-                      <button>Ocultar filtros</button>  
+                      <a href="">Ocultar filtros</a>  
                     </div>
                     
                     <div>
@@ -145,15 +145,17 @@
             </div>
 
          <!-- operaciones -->
-            <div class="column dos is-8">
+            <div class="column is-6 div-operaciones ">
 
-                <div class="column seis">
+                <div class="column titulo-operaciones">
                     <h2>Operaciones</h2>
-                    <button> + Nueva operación</button>
+                    <a class="button is-danger" > + Nueva operación</a>
                 </div>
 
-                <div>
+                <div class="contenedor-img">
                     <img src="imagenes/money.png" alt="imagen de dinero, imagen de decoración">
+                    <h3>Sin resultados</h3>
+                    <p>cambia los filtros o arega operaciones</p>
                 </div>
             </div>
         </div>
