@@ -144,6 +144,22 @@ img{
     max-width: 500px;
 }
 
+/* + nueva operación */
+.div-ope{
+    background-color: black;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    /* display: none; */
+}
+
+.ocultar{
+    display: none;
+}
+.contenedor-new-ope{
+background-color: aqua;
+}
 
 /*-------------------
     media query
