@@ -146,21 +146,35 @@ img{
 
 /* + nueva operación */
 .div-ope{
-    background-color: black;
+    background-color: rgb(222, 222, 222);
     height: 100%;
     width: 100%;
     display: flex;
     justify-content: center;
-    /* display: none; */
 }
 
 .ocultar{
     display: none;
 }
 .contenedor-new-ope{
-background-color: aqua;
+    margin: 4% 0;
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 1px 2px 1.5px 3px rgb(198, 198, 198);
 }
 
+.panel-control{
+    margin-top: 15px;
+}
+
+.btns-ope{
+    display: flex;
+    justify-content: right;
+}
+#btn-cancelar-ope{
+    margin-right: 5px;
+}
 /*-------------------
     media query
 -------------------*/
