@@ -141,7 +141,7 @@ select:hover, input:hover{
 }
 
 img{
-    max-width: 500px;
+    max-width: 400px;
 }
 
 /* + nueva operación */
@@ -194,14 +194,15 @@ img{
 .contenedor-hijo-reporte{
     margin-top: 3%;
     background-color: white;
-        border-radius: 10px;
-        padding: 15px;
+    border-radius: 10px;
+    padding: 15px;
 }
 
 .contenedor-img-reporte{
-    margin-top: 15px;
-    justify-content: center;
+    margin-top: 50px;
     display: flex;
+    justify-content: center;
+    align-items: center;
     flex-direction: column;
     text-align: center;
 }
