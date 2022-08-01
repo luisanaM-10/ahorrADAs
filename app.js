@@ -18,7 +18,7 @@ const balance = (e) => {
     sectionBalance.classList.remove("oculto")
     sectionCategorias.classList.add("oculto")
     sectionReportes.classList.add("oculto")
-    divNuevaOp.classList.add("ocultar")
+    divNuevaOp.classList.add("oculto")
 }
 btnBalance.addEventListener("click", balance)
 btnBalance2.addEventListener("click", balance)
@@ -27,7 +27,7 @@ const categorias = (e) => {
     sectionBalance.classList.add("oculto")
     sectionCategorias.classList.remove("oculto")
     sectionReportes.classList.add("oculto")
-    divNuevaOp.classList.add("ocultar")
+    divNuevaOp.classList.add("oculto")
 }
 btnCategorias.addEventListener("click", categorias)
 btnCategorias2.addEventListener("click", categorias)
@@ -36,7 +36,7 @@ const reportes = (e) => {
     sectionBalance.classList.add("oculto")
     sectionCategorias.classList.add("oculto")
     sectionReportes.classList.remove("oculto")
-    divNuevaOp.classList.add("ocultar")
+    divNuevaOp.classList.add("oculto")
 }
 btnReportes.addEventListener("click", reportes)
 btnReportes2.addEventListener("click", reportes)
@@ -49,5 +49,6 @@ btnBurger.addEventListener("click", (e) => {
 // btn de + nueva operacion
 btnOperacion.addEventListener("click", (e) => {
     sectionBalance.classList.add("oculto")
-    divNuevaOp.classList.remove("ocultar")
+    divNuevaOp.classList.remove("oculto")
 })
+

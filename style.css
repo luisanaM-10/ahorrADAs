@@ -153,9 +153,6 @@ img{
     justify-content: center;
 }
 
-.ocultar{
-    display: none;
-}
 .contenedor-new-ope{
     margin: 4% 0;
     padding: 20px;
@@ -177,8 +174,29 @@ img{
 }
 
 /* -----------------------------
-    SECTION DE BALANCE
+    SECTION DE CATEGORÍA
 ----------------------------- */
+.contenedor-categorias{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.div-categoria{
+    margin-top: 4%;
+    background-color: white;
+    overflow: auto;
+    height: 100%;
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 1px 2px 1.5px 3px rgb(198, 198, 198);
+}
+
+.input-categorias{
+   margin-right: 10px;
+   height: 35px;
+   padding: 4px;
+}
 
 
 
@@ -215,3 +233,4 @@ img{
         font-size: 25px;
     }
 }
+
