@@ -74,11 +74,11 @@
          SECTION DE BALANCE 
     ------------------------------->
     <section id="section-balance">
-        <div class="column contenedor-section">
+        <div class="column  contenedor-section">
 
             <div class="column is-3 div-balance-filtros">
              <!-- balance -->
-                <div class="column is-11 div-balance">
+                <div class=" column is-11 div-balance">
                     <h2>Balance</h2>
                     <div class="flex-contenedor ">
                         <p>Ganancias</p>
@@ -97,7 +97,7 @@
                 </div>
 
              <!-- filtros -->
-                <div class="column is-11 div-filtro">
+                <div class=" column is-11 div-filtro">
                     <div class="flex-contenedor">
                       <h2>Filtros</h2>
                       <a href="">Ocultar filtros</a>  
@@ -162,7 +162,8 @@
     </section>
 
     <!-- + nueva operación -->
-    <div class=" div-ope ocultar" id="div-operaciones">
+    <section class="oculto" id="div-operaciones">
+      <div class=" div-ope">
         <div class="column  is-7 contenedor-new-ope">
             <h2>Nueva operación</h2>
             <div class="panel-control">
@@ -200,14 +201,25 @@
                 <button class="button is-success">Enviar</button>
             </div>
         </div>
-    </div>
-
+      </div>
+    </section>
 
     <!--------------------------------
         SECTION DE CATEGORÍAS 
     --------------------------------->
     <section id="section-categorias" class="oculto">
-            <h2>Categorías</h2>   
+        <div class="contenedor-categorias">
+            <div class="column is-6 div-categoria">
+                <h2>Categorías</h2>
+                <div class="flex-contenedor">
+                    <input type="text" class="input-categorias">
+                    <button class="button is-success">Agregar</button>
+                </div>
+                <div>
+
+                </div>
+            </div>
+        </div>
     </section>
 
     <!--------------------------------
