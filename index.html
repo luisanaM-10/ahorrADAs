@@ -114,14 +114,8 @@
 
                     <div>
                         <h3>Categoría</h3>
-                        <select name="" id="">
-                            <option value="todas">Todas</option>
-                            <option value="comida">Comida</option>
+                        <select class="select-categorias filtro-categoria">
                             <option value="servicios">Servicios</option>
-                            <option value="salida">Salidas</option>
-                            <option value="educacion">Educación</option>
-                            <option value="transporte">Transporte</option>
-                            <option value="trabajo">Trabajo</option>
                         </select>
                     </div>
 
@@ -183,13 +177,8 @@
             </div>
             <div class="panel-control">
                 <h3>Categoría</h3>
-                <select name="" id="">
-                    <option value="comida">Comida</option>
+                <select name="" id="" class="select-categorias">
                     <option value="servicios">Servicios</option>
-                    <option value="salidas">Salidas</option>
-                    <option value="educacion">Educación</option>
-                    <option value="transporte">Transporte</option>
-                    <option value="trabajo">Trabajo</option>
                 </select>
             </div>
             <div class="panel-control">
@@ -211,13 +200,11 @@
         <div class="contenedor-categorias">
             <div class="column is-6 div-categoria">
                 <h2>Categorías</h2>
-                <div class="flex-contenedor">
-                    <input type="text" class="input-categorias">
-                    <button class="button is-success">Agregar</button>
+                <div class="flex-contenedor" style="margin-bottom: 20px;">
+                    <input type="text" class="input-categorias" id="categoria-input">
+                    <button class="button is-success" id="agregar-categoria">Agregar</button>
                 </div>
-                <div>
-
-                </div>
+                <div id="categorias"></div>
             </div>
         </div>
     </section>
