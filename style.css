@@ -138,12 +138,29 @@ select:hover, input:hover{
     justify-content: center;
     align-items: center;
     flex-direction: column;
-
 }
 
 img{
     max-width: 400px;
 }
+
+/* .green{
+    color: green;
+    font-weight: 600;
+}
+
+.green::before{
+    content: '+';
+}
+
+.red{
+    color: red;
+    font-weight: 600;
+}
+
+.red::before{
+    content: '-';
+} */
 
 /* + nueva operación */
 .div-ope{
