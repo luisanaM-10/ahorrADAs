@@ -117,7 +117,7 @@ const pintarOperaciones = arr => {
         <div class="column is-3">${operacion.descripcion}</div>
         <div class="column is-3"><span class="tag is-primary is-light">${operacion.categoria}</span></div>
         <div class="column is-2 has-text-right" style="font-size:14px">${operacion.fecha}</div>
-        <div class="column is-2 has-text-right">$${operacion.monto}</div>
+        <div class="column is-2 has-text-right ${operacion.tipo === 'ganancias'? 'green' : 'red'}">$${operacion.monto}</div>
         <div class="column is-2 has-text-right" style="display:flex; font-size:13px">
         <a class="btn-editar">Editar</a>
         <a class="btn-eliminar" style="margin-left:5px">Eliminar</a>

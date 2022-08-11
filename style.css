@@ -144,7 +144,7 @@ img{
     max-width: 400px;
 }
 
-/* .green{
+.green{
     color: green;
     font-weight: 600;
 }
@@ -160,7 +160,7 @@ img{
 
 .red::before{
     content: '-';
-} */
+}
 
 /* + nueva operación */
 .div-ope{
