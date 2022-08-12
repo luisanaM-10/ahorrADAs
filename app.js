@@ -87,6 +87,10 @@ const mostrarOperaciones = (arr) => {
 }
 
 btnEnviar.addEventListener('click', (e) => {
+    if(inputDescripcion.value.trim().length === 0 || inputMonto.value === 0){
+        alertify.warning('Todos los campos son necesario y el monto tiene que ser mayor a 0')
+        return
+    }
     const operacion = {
         id: uuidv4(),
         descripcion: inputDescripcion.value,
@@ -104,7 +108,8 @@ btnEnviar.addEventListener('click', (e) => {
     categoriaOperacion.value = 'servicios',
     mostrarOperaciones(operaciones)
     localStorage.setItem('operaciones' , JSON.stringify(operaciones))
-    pintarOperaciones(operaciones)
+    pintarOperaciones(operaciones);
+    alertify.success('¡Operación agregada con exito!');
 })
 
 const pintarOperaciones = arr => {
@@ -133,6 +138,7 @@ const pintarOperaciones = arr => {
             operaciones = JSON.parse(localStorage.getItem('operaciones'))
             pintarOperaciones(operaciones)
             mostrarOperaciones(operaciones)
+            alertify.success('¡Operación eliminada con exito!')
         })
     })
 }
