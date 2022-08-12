@@ -85,7 +85,6 @@ const mostrarOperaciones = (arr) => {
       divConOperaciones.classList.remove('oculto');
     }
 }
-mostrarOperaciones(operaciones)
 
 btnEnviar.addEventListener('click', (e) => {
     const operacion = {
@@ -103,7 +102,6 @@ btnEnviar.addEventListener('click', (e) => {
     inputMonto.value = 0,
     tipoDeOperacion.value = 'gastos',
     categoriaOperacion.value = 'servicios',
-    // inputFecha.value
     mostrarOperaciones(operaciones)
     localStorage.setItem('operaciones' , JSON.stringify(operaciones))
     pintarOperaciones(operaciones)
@@ -139,7 +137,6 @@ const pintarOperaciones = arr => {
     })
 }
 
-pintarOperaciones(operaciones)
 
 // ------------------------------------------
 //              Categorías
@@ -168,7 +165,6 @@ const generarCategorias = () => {
     }
     }
 }
-generarCategorias()
 
 const pintarCategorias = () => {
     for (let i = 0; i < categorias.length; i++) {
@@ -184,5 +180,15 @@ const pintarCategorias = () => {
         </div>`
     }
 }
-pintarCategorias()
 
+const inicializar = () => {
+    const inputFecha = document.querySelectorAll('input[type="date"]')
+    inputFecha.forEach(input => {
+        input.valueAsDate = new Date()
+    })
+    mostrarOperaciones(operaciones)
+    pintarOperaciones(operaciones)
+    generarCategorias()
+    pintarCategorias()
+}
+window.onload = inicializar
