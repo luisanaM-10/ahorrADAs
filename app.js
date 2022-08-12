@@ -73,8 +73,8 @@ btnOperacion.addEventListener("click", (e) => {
     sectionBalance.classList.add("oculto")
     divNuevaOp.classList.remove("oculto")
 })
-
-const operaciones = []
+let operaciones = JSON.parse(localStorage.getItem('operaciones')) || [];
+// const operaciones = []
 
 const mostrarOperaciones = (arr) => {
     if (!arr.length) {
@@ -105,6 +105,7 @@ btnEnviar.addEventListener('click', (e) => {
     categoriaOperacion.value = 'servicios',
     // inputFecha.value
     mostrarOperaciones(operaciones)
+    localStorage.setItem('operaciones' , JSON.stringify(operaciones))
     pintarOperaciones(operaciones)
 })
 
@@ -120,13 +121,15 @@ const pintarOperaciones = arr => {
         <div class="column is-2 has-text-right ${operacion.tipo === 'ganancias'? 'green' : 'red'}">$${operacion.monto}</div>
         <div class="column is-2 has-text-right" style="display:flex; font-size:13px">
         <a class="btn-editar">Editar</a>
-        <a class="btn-eliminar" style="margin-left:5px">Eliminar</a>
+        <a class="btn-eliminar" style="margin-left:5px" >Eliminar</a>
         </div>
       </div>
       `
 })  
     document.getElementById('operaciones').innerHTML = str;
 }
+
+pintarOperaciones(operaciones)
 
 // ------------------------------------------
 //              Categorías
@@ -140,11 +143,6 @@ const categorias = [
     'Trabajo',
     'Salud'
 ]
-// agregar categorias
-// const agregarCategoria = () => {
-    
-// }
-// categorias.push(inputCategoria.value)
 
 
 // pintar las categorias en los selects
@@ -178,4 +176,3 @@ const pintarCategorias = () => {
 }
 pintarCategorias()
 
-// console.log(categorias)
