@@ -120,13 +120,23 @@ const pintarOperaciones = arr => {
         <div class="column is-2 has-text-right" style="font-size:14px">${operacion.fecha}</div>
         <div class="column is-2 has-text-right ${operacion.tipo === 'ganancias'? 'green' : 'red'}">$${operacion.monto}</div>
         <div class="column is-2 has-text-right" style="display:flex; font-size:13px">
-        <a class="btn-editar">Editar</a>
-        <a class="btn-eliminar" style="margin-left:5px" >Eliminar</a>
+        <a class="btn-editar" data-id=${operacion.id}>Editar</a>
+        <a class="btn-eliminar" style="margin-left:5px" data-id=${operacion.id}>Eliminar</a>
         </div>
       </div>
       `
+    document.getElementById('operaciones').innerHTML = str;  
 })  
-    document.getElementById('operaciones').innerHTML = str;
+    const btnEliminar = document.querySelectorAll('.btn-eliminar')
+    btnEliminar.forEach(btn => {
+        btn.addEventListener('click', e => {
+            const arregloSinOperacion = operaciones.filter(operacion  => operacion.id !== e.target.dataset.id)
+            localStorage.setItem('operaciones', JSON.stringify(arregloSinOperacion))
+            operaciones = JSON.parse(localStorage.getItem('operaciones'))
+            pintarOperaciones(operaciones)
+            mostrarOperaciones(operaciones)
+        })
+    })
 }
 
 pintarOperaciones(operaciones)
