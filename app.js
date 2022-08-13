@@ -86,6 +86,13 @@ const mostrarOperaciones = (arr) => {
     }
 }
 
+// btn de cancelar operación 
+btnCancelar.addEventListener('click', (e) => {
+    sectionBalance.classList.remove("oculto")
+    divNuevaOp.classList.add("oculto")
+})
+
+// btn de enviar operación
 btnEnviar.addEventListener('click', (e) => {
     if(inputDescripcion.value.trim().length === 0 || inputMonto.value === 0){
         alertify.warning('Todos los campos son necesario y el monto tiene que ser mayor a 0')
