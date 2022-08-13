@@ -10,6 +10,12 @@ const categoriaOperacion = document.getElementById('categoria-select-operacion')
 const inputFecha = document.getElementById('input-fecha'); // input de fecha (+Nueva operación)
 const divSinOperaciones = document.getElementById('sin-operaciones'); // div a mostrar cuando no hay operaciones 
 const divConOperaciones = document.getElementById('con-operaciones'); // div a mostrar cuando hay operaciones 
+// const divEditarOperacion = document.getElementById('div-editar-operaciones') // div de editar operación
+// const editarInputDescripcion = document.getElementById('editar-input-descripcion') // input de editar descripción (div de editar operación)
+// const editarInputMonto = document.getElementById('editar-input-monto') // input de editar monto (div de editar operación)
+// const editarSelectTipo = document.getElementById('editar-select-tipo') // select de editar tipo de operación (div de editar operación)
+// const editarSelectCategoria = document.getElementById('editar-select-categoria') // select de editar categotia (div de editar operación)
+// const editarInputFecha = document.getElementById('editar-input-fecha') // input de editar fecha (div de editar operación)
 const selects = document.getElementsByClassName('select-categorias'); // selects de categorias
 const contenedorCategorias = document.getElementById('categorias') // contenedor de categorias
 const inputCategoria = document.getElementById('categoria-input') // input de categoria
@@ -26,7 +32,8 @@ const btnOperacion = document.getElementById("btn-operacion") // btn de +Nueva o
 const btnEnviar = document.getElementById('btn-enviar-operacion'); // btn de enviar operación (+Nueva operación)
 const btnCancelar = document.getElementById('btn-cancelar-operacion') // btn de cancelar operación (+Nueva operación)
 const btnAgregar = document.getElementById('agregar-categoria') // btn de agregar categorias
-
+const btnCancelarEdicion = document.getElementById('btn-cancelar-editar') // btn de cancelar operación editada (div de editar operación)
+const btnEnviarEdicion = document.getElementById('btn-enviar-editar-operacion') // btn de enviar operación editada (div de editar operación)
 
 // ---------------------------------------
 //            NavBar
@@ -148,7 +155,47 @@ const pintarOperaciones = arr => {
             alertify.success('¡Operación eliminada con exito!')
         })
     })
+    // const btnEditar = document.querySelectorAll('.btn-editar')
+    //     btnEditar.forEach(btn => {
+    //         btn.addEventListener('click', e => {
+    //             const operacionAeditar = operaciones.filter(operacion  => operacion.id === e.target.dataset.id)
+    //             editarOperacion(operacionAeditar)
+    //         btnEnviarEdicion.addEventListener('click', () => {
+    //             console.log(operacionAeditar)
+    //         })
+    //     })
+    // })
 }
+
+// const editarOperacion = arr => {
+//     sectionBalance.classList.add('oculto')
+//     divEditarOperacion.classList.remove('oculto')
+//     const {descripcion, monto, tipo, categoria, fecha} = arr[0]
+//     editarInputDescripcion.value = descripcion;
+//     editarInputMonto.value = monto;
+//     editarSelectTipo.value = tipo;
+//     editarSelectCategoria.value = categoria;
+//     editarInputFecha.valueAsDate = new Date(fecha)
+// }
+
+// -----------------------
+//        Filtros 
+// -----------------------
+
+// tipo de categoria
+const filtroTipo = document.getElementById('filto-tipo')
+filtroTipo.addEventListener('change', (e) => {
+    if (e.target.value !== 'todos'){
+        const porTipo = operaciones.filter(operacion => operacion.tipo === e.target.value)
+        localStorage.setItem('operaciones', porTipo)
+        pintarOperaciones(porTipo)
+        console.log(porTipo)
+    }else {
+        pintarOperaciones(operaciones)
+    }
+})
+
+
 
 
 // ------------------------------------------
