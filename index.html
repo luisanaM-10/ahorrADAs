@@ -209,6 +209,43 @@
       </div>
     </section>
 
+    <!-- edictar operación -->
+    <section class="oculto" id="div-editar-operaciones">
+        <div class=" div-ope">
+          <div class="column  is-7 contenedor-new-ope">
+              <h2>Edictar operación</h2>
+              <div class="panel-control">
+                  <h3>Descripción</h3>
+                  <input type="text" id="editar-input-descripcion">
+              </div>
+              <div class="panel-control">
+                  <h3>Monto</h3>
+                  <input type="number" id="editar-input-monto">
+              </div>
+              <div class="panel-control">
+                  <h3>Tipo</h3>
+                  <select id="editar-select-tipo">
+                      <option value="gastos">Gasto</option>
+                      <option value="ganancias">Ganancias</option>
+                  </select>
+              </div>
+              <div class="panel-control">
+                  <h3>Categoría</h3>
+                  <select id="editar-select-categoria" class="select-categorias">
+                      <option value="servicios">Servicios</option>
+                  </select>
+              </div>
+              <div class="panel-control">
+                  <h3>Fecha</h3>
+                  <input type="date" id="editar-input-fecha">
+              </div>
+              <div class="panel-control btns-ope">
+                  <button class="button is-light" id="btn-cancelar-editar">Cancelar</button>
+                  <button class="button is-success" id="btn-enviar-editar-operacion">Enviar</button>
+              </div>
+          </div>
+        </div>
+      </section>
     <!--------------------------------
         SECTION DE CATEGORÍAS 
     --------------------------------->
