@@ -16,6 +16,9 @@ const divConOperaciones = document.getElementById('con-operaciones'); // div a m
 // const editarSelectTipo = document.getElementById('editar-select-tipo') // select de editar tipo de operación (div de editar operación)
 // const editarSelectCategoria = document.getElementById('editar-select-categoria') // select de editar categotia (div de editar operación)
 // const editarInputFecha = document.getElementById('editar-input-fecha') // input de editar fecha (div de editar operación)
+const spanGastos = document.getElementById('total-gastos') // span de total de gastos (div de balance / section de balance)
+const spanlGanancias = document.getElementById('total-ganancias') // span de total de ganancias (div de balance / section de balance)
+const spanResumenTotal = document.getElementById('resumen-total') // span de total (div de balance / section de balance)
 const selects = document.getElementsByClassName('select-categorias'); // selects de categorias
 const contenedorCategorias = document.getElementById('categorias') // contenedor de categorias
 const inputCategoria = document.getElementById('categoria-input') // input de categoria
@@ -179,21 +182,42 @@ const pintarOperaciones = arr => {
 // }
 
 // -----------------------
+//        Balance
+// -----------------------
+
+// total de ganancias
+const totalGanancia = arr => 
+  arr.filter(operacion => operacion.tipo === 'ganancias').reduce((prev, current) => 
+    prev + Number(current.monto) ,0)
+
+// total de gastos
+const totalGastos = arr => 
+   arr.filter(operacion => operacion.tipo === 'gastos').reduce((prev, current) => 
+   prev + Number(current.monto) ,0
+)
+
+spanGastos.innerHTML = totalGastos(operaciones)
+spanlGanancias.innerHTML = totalGanancia(operaciones)
+spanResumenTotal.innerHTML = totalGanancia(operaciones) - totalGastos(operaciones)
+
+// -----------------------
 //        Filtros 
 // -----------------------
 
-// tipo de categoria
-const filtroTipo = document.getElementById('filto-tipo')
-filtroTipo.addEventListener('change', (e) => {
-    if (e.target.value !== 'todos'){
-        const porTipo = operaciones.filter(operacion => operacion.tipo === e.target.value)
-        localStorage.setItem('operaciones', porTipo)
-        pintarOperaciones(porTipo)
-        console.log(porTipo)
-    }else {
-        pintarOperaciones(operaciones)
-    }
-})
+// tipo de operación
+// const filtroTipo = document.getElementById('filto-tipo')
+// filtroTipo.addEventListener('change', (e) => {
+//     if (e.target.value !== 'todos'){
+//         const porTipo = operaciones.filter(operacion => operacion.tipo === e.target.value)
+//         localStorage.setItem('operaciones', porTipo)
+//         pintarOperaciones(porTipo)
+//         console.log(porTipo)
+//     }else {
+//         pintarOperaciones(operaciones)
+//     }
+// })
+
+// tipo de categoria 
 
 
 
@@ -250,5 +274,7 @@ const inicializar = () => {
     pintarOperaciones(operaciones)
     generarCategorias()
     pintarCategorias()
+    totalGastos(operaciones)
+    totalGanancia(operaciones)
 }
 window.onload = inicializar
