@@ -34,7 +34,7 @@ const btnReportes2 = document.getElementById("btn-reportes2") // btn de reportes
 const btnOperacion = document.getElementById("btn-operacion") // btn de +Nueva operación
 const btnEnviar = document.getElementById('btn-enviar-operacion'); // btn de enviar operación (+Nueva operación)
 const btnCancelar = document.getElementById('btn-cancelar-operacion') // btn de cancelar operación (+Nueva operación)
-const btnAgregar = document.getElementById('agregar-categoria') // btn de agregar categorias
+const btnAgregarCategoria = document.getElementById('agregar-categoria') // btn de agregar categorias
 const btnCancelarEdicion = document.getElementById('btn-cancelar-editar') // btn de cancelar operación editada (div de editar operación)
 const btnEnviarEdicion = document.getElementById('btn-enviar-editar-operacion') // btn de enviar operación editada (div de editar operación)
 
@@ -203,6 +203,12 @@ spanResumenTotal.innerHTML = totalGanancia(operaciones) - totalGastos(operacione
 // -----------------------
 //        Filtros 
 // -----------------------
+const btnOcultarFiltros = document.getElementById('ocultar-filtro-btn') 
+const contenedorFiltros = document.getElementById('contenedor-filtros')
+
+btnOcultarFiltros.addEventListener('click', (e) => {
+    contenedorFiltros.classList.toggle("oculto")
+})
 
 // tipo de operación
 // const filtroTipo = document.getElementById('filto-tipo')
@@ -225,16 +231,31 @@ spanResumenTotal.innerHTML = totalGanancia(operaciones) - totalGastos(operacione
 // ------------------------------------------
 //              Categorías
 // ------------------------------------------
-const categorias = [
+let categorias = [
     'Comida',
     'Servicios',
     'Salidas',
     'Transporte',
     'Educación',
-    'Trabajo',
-    'Salud'
+    'Trabajo'
 ]
+// localStorage.setItem('categorias' , JSON.stringify(categorias))
+//JSON.parse(localStorage.getItem('categorias'))
+// agregar categoria
+// console.log(categorias)
 
+// const crearCategoria = () => {
+//   btnAgregarCategoria.addEventListener('click', (e) => {
+//     document.getElementById('categorias').innerHTML = ''
+//     const Nuevacategoria = inputCategoria.value
+//     categorias.push(Nuevacategoria)
+//     generarCategorias(categorias)
+//     pintarCategorias(categorias)
+//     // localStorage.setItem('categorias' , JSON.stringify(categorias))
+//     console.log(categorias)
+// }) 
+// }
+// crearCategoria()
 
 // pintar las categorias en los selects
 const generarCategorias = () => {
