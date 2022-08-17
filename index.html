@@ -102,9 +102,10 @@
                 <div class=" column is-11 div-filtro">
                     <div class="flex-contenedor">
                       <h2>Filtros</h2>
-                      <a href="">Ocultar filtros</a>  
+                      <a id="ocultar-filtro-btn">Ocultar filtros</a>  
                     </div>
                     
+                  <div id="contenedor-filtros">
                     <div>
                         <h3>Tipo</h3>
                         <select  id="filto-tipo">
@@ -137,6 +138,7 @@
                             <option value="">Z/A</option>
                         </select>
                     </div>
+                  </div>
                 </div>
             </div>
 
@@ -253,9 +255,12 @@
         <div class="contenedor-categorias">
             <div class="column is-6 div-categoria">
                 <h2>Categorías</h2>
-                <div class="flex-contenedor" style="margin-bottom: 20px;">
-                    <input type="text" class="input-categorias" id="categoria-input">
-                    <button class="button is-success" id="agregar-categoria">Agregar</button>
+                <div>
+                    <h3 style="margin-top: 10px;">Nombre</h3>
+                    <div style="margin-bottom: 20px; display: flex; justify-content: space-between;">
+                        <input type="text" class="input-categorias" id="categoria-input">
+                        <button class="button is-success" id="agregar-categoria">Agregar</button>
+                </div>
                 </div>
                 <div id="categorias"></div>
             </div>
