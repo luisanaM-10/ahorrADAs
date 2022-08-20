@@ -19,6 +19,7 @@ const divConOperaciones = document.getElementById('con-operaciones'); // div a m
 const spanGastos = document.getElementById('total-gastos') // span de total de gastos (div de balance / section de balance)
 const spanlGanancias = document.getElementById('total-ganancias') // span de total de ganancias (div de balance / section de balance)
 const spanResumenTotal = document.getElementById('resumen-total') // span de total (div de balance / section de balance)
+const contenedorFiltros = document.getElementById('contenedor-filtros') // contenedor de filtros (section de balance)
 const selects = document.getElementsByClassName('select-categorias'); // selects de categorias
 const contenedorCategorias = document.getElementById('categorias') // contenedor de categorias
 const inputCategoria = document.getElementById('categoria-input') // input de categoria
@@ -37,7 +38,7 @@ const btnCancelar = document.getElementById('btn-cancelar-operacion') // btn de 
 const btnAgregarCategoria = document.getElementById('agregar-categoria') // btn de agregar categorias
 const btnCancelarEdicion = document.getElementById('btn-cancelar-editar') // btn de cancelar operación editada (div de editar operación)
 const btnEnviarEdicion = document.getElementById('btn-enviar-editar-operacion') // btn de enviar operación editada (div de editar operación)
-
+const btnOcultarFiltros = document.getElementById('ocultar-filtro-btn')  // btn de ocultar filtros (section de balance)
 // ---------------------------------------
 //            NavBar
 // ---------------------------------------
@@ -84,7 +85,6 @@ btnOperacion.addEventListener("click", (e) => {
     divNuevaOp.classList.remove("oculto")
 })
 let operaciones = JSON.parse(localStorage.getItem('operaciones')) || [];
-// const operaciones = []
 
 const mostrarOperaciones = (arr) => {
     if (!arr.length) {
@@ -134,8 +134,8 @@ const pintarOperaciones = arr => {
     arr.forEach((operacion) => {
       str = str +
         `
-      <div style="display: flex;" >
-        <div class="column is-3">${operacion.descripcion}</div>
+      <div class="nueva-operacion">
+        <div class="column is-3" style="font-weight: 600;">${operacion.descripcion}</div>
         <div class="column is-3"><span class="tag is-primary is-light">${operacion.categoria}</span></div>
         <div class="column is-2 has-text-right" style="font-size:14px">${operacion.fecha}</div>
         <div class="column is-2 has-text-right ${operacion.tipo === 'ganancias'? 'green' : 'red'}">$${operacion.monto}</div>
@@ -203,8 +203,6 @@ spanResumenTotal.innerHTML = totalGanancia(operaciones) - totalGastos(operacione
 // -----------------------
 //        Filtros 
 // -----------------------
-const btnOcultarFiltros = document.getElementById('ocultar-filtro-btn') 
-const contenedorFiltros = document.getElementById('contenedor-filtros')
 
 btnOcultarFiltros.addEventListener('click', (e) => {
     contenedorFiltros.classList.toggle("oculto")
@@ -240,22 +238,10 @@ let categorias = [
     'Trabajo'
 ]
 // localStorage.setItem('categorias' , JSON.stringify(categorias))
-//JSON.parse(localStorage.getItem('categorias'))
+// JSON.parse(localStorage.getItem('categorias'))
 // agregar categoria
 // console.log(categorias)
 
-// const crearCategoria = () => {
-//   btnAgregarCategoria.addEventListener('click', (e) => {
-//     document.getElementById('categorias').innerHTML = ''
-//     const Nuevacategoria = inputCategoria.value
-//     categorias.push(Nuevacategoria)
-//     generarCategorias(categorias)
-//     pintarCategorias(categorias)
-//     // localStorage.setItem('categorias' , JSON.stringify(categorias))
-//     console.log(categorias)
-// }) 
-// }
-// crearCategoria()
 
 // pintar las categorias en los selects
 const generarCategorias = () => {
@@ -286,6 +272,21 @@ const pintarCategorias = () => {
     }
 }
 
+// crear una categoria nueva
+// const crearCategoria = () => {
+//   btnAgregarCategoria.addEventListener('click', (e) => {
+//     document.getElementById('categorias').innerHTML = ''
+//     const Nuevacategoria = inputCategoria.value
+//     categorias.push(Nuevacategoria)
+//     localStorage.setItem('categorias' , JSON.stringify(categorias))
+//     generarCategorias()
+//     pintarCategorias()
+//     console.log(categorias)
+// }) 
+
+// }
+
+
 const inicializar = () => {
     const inputFecha = document.querySelectorAll('input[type="date"]')
     inputFecha.forEach(input => {
@@ -295,6 +296,7 @@ const inicializar = () => {
     pintarOperaciones(operaciones)
     generarCategorias()
     pintarCategorias()
+    // crearCategoria()
     totalGastos(operaciones)
     totalGanancia(operaciones)
 }
