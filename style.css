@@ -6,6 +6,7 @@
 body{
     width: 100%;
     height: 100vh;
+    background-color: rgb(222, 222, 222);
 }
 
 /*------------
@@ -40,6 +41,7 @@ section{
     height: 100%;
 }
 .contenedor-section{
+    margin-top: 30px;
     height: 100%;
     display: flex;
     justify-content: center;
@@ -47,7 +49,7 @@ section{
 
 .div-balance-filtros{
     display: flex;
-    margin-top: 3%;
+    width: 100%;
     align-items: center;
     flex-direction: column;
 }
@@ -68,9 +70,7 @@ h3{
 
 /* balance */
 .div-balance{
-    background-color: white;
-    border-radius: 5%;
-    box-shadow: 0.5px 3px 5px 4px  rgb(201, 200, 200);
+    width: 100%;
 }
 
 .flex-contenedor{
@@ -98,10 +98,7 @@ h3{
 
 /* filtro */
 .div-filtro{
-    background-color: white;
-    margin-top: 18px;
-    border-radius: 5%;
-    box-shadow: 0.5px 3px 5px 4px  rgb(201, 200, 200);
+    width: 100%;
 }
 
 
@@ -119,11 +116,9 @@ select:hover, input:hover{
 }
 
 /* operaciones */
-.div-operaciones{
-    margin-top: 4%;
-    background-color: #ffffff;
-    border-radius: 3%;
-    box-shadow: 0.5px 3px 5px 4px  rgb(201, 200, 200);
+.contenedor-operaciones{
+    max-height:550px;
+    overflow: auto;
 }
 
 .titulo-operaciones{
@@ -162,15 +157,12 @@ img{
 
 /* + nueva operación */
 .div-ope{
-    background-color: rgb(222, 222, 222);
-    height: 100%;
-    width: 100%;
     display: flex;
     justify-content: center;
 }
 
 .contenedor-new-ope{
-    margin: 4% 0;
+    margin-top: 50px;
     padding: 20px;
     background-color: white;
     border-radius: 10px;
@@ -188,6 +180,11 @@ img{
 #btn-cancelar-ope{
     margin-right: 5px;
 }
+.nueva-operacion{
+    display: flex;
+    background-color: rgb(248, 248, 248);
+    margin: 5px;
+}
 
 /* -----------------------------
     SECTION DE CATEGORÍA
@@ -200,10 +197,10 @@ img{
 }
 
 .div-categoria{
-    margin-top: 4%;
+    margin-top: 50px;
     background-color: white;
     overflow: auto;
-    height: 90%;
+    max-height: 600px;
     border-radius: 10px;
     box-shadow: 1px 2px 1.5px 3px rgb(198, 198, 198);
 }
@@ -222,11 +219,12 @@ img{
 .contenedor-reporte{
     display: flex;
     justify-content: center;
-    height: 100%;
+    height: 550px;
+    padding: 10px;
 }
 
 .contenedor-hijo-reporte{
-    margin-top: 3%;
+    margin-top: 50px;
     background-color: white;
     border-radius: 10px;
     padding: 15px;
@@ -244,9 +242,50 @@ img{
 /*-------------------
     media query
 -------------------*/
+
 @media(max-width:1023px){
+    .contenedor-section{
+        display: block;
+        margin-top: 10px;
+    }
+    body{
+        height: 120vh;
+    }
+    #section-balance{
+        width: 100%;
+        padding: 10px;
+    }
     .titulo{
         font-size: 25px;
     }
+    .contenedor-operaciones{
+        max-height: 450px;
+    }
 }
 
+@media(max-width:500px){
+    img{
+        width: 240px;
+    }
+    h2{
+        font-size: 25px;
+    }
+    body{
+        height: 105vh;
+    }
+    .titulo-operaciones{
+        display: block;
+    }
+    .btn-operacion{
+        margin-top: 5px;
+    }
+    .contenedor-operaciones{
+        max-height: 380px;
+    }
+}
+
+@media(max-width:769px){
+    .nueva-operacion{
+        flex-wrap: wrap;
+    }
+}

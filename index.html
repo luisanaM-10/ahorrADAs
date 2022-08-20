@@ -75,79 +75,79 @@
     <!------------------------------
          SECTION DE BALANCE 
     ------------------------------->
-    <section id="section-balance">
-        <div class="column  contenedor-section">
+    <section id="section-balance" >
+        <div class="container">
+            <div class="columns is-multiline contenedor-section">
+                <div
+                    class="column  is-3-desktop is-11-tablet  div-balance-filtros">
+                    <!-- balance -->
+                    <div class="box div-balance">
+                        <h2>Balance</h2>
+                        <div class="flex-contenedor ">
+                            <p>Ganancias</p>
+                            <span class="span-ganancias" id="total-ganancias">+$0</span>
+                        </div>
 
-            <div class="column is-3 div-balance-filtros">
-             <!-- balance -->
-                <div class=" column is-11 div-balance">
-                    <h2>Balance</h2>
-                    <div class="flex-contenedor ">
-                        <p>Ganancias</p>
-                        <span class="span-ganancias" id="total-ganancias">+$0</span>
+                        <div class="flex-contenedor">
+                            <p>Gastos</p>
+                            <span class="span-gastos" id="total-gastos">-$0</span>
+                        </div>
+
+                        <div class="flex-contenedor">
+                            <p id="total">Total</p>
+                            <span class="span-total" id="resumen-total">$0</span>
+                        </div>
                     </div>
+                    <!-- filtros -->
+                    <div class="box div-filtro">
+                        <div class="flex-contenedor">
+                            <h2>Filtros</h2>
+                            <a id="ocultar-filtro-btn">Ocultar filtros</a>
+                        </div>
 
-                    <div class="flex-contenedor">
-                        <p>Gastos</p>
-                        <span class="span-gastos" id="total-gastos">-$0</span>
-                    </div>
+                        <div id="contenedor-filtros">
+                            <div>
+                                <h3>Tipo</h3>
+                                <select id="filto-tipo">
+                                    <option value="todos">Todos</option>
+                                    <option value="gastos">Gastos</option>
+                                    <option value="ganancias">Ganancias</option>
+                                </select>
+                            </div>
 
-                    <div class="flex-contenedor">
-                        <p id="total">Total</p>
-                        <span class="span-total" id="resumen-total">$0</span>
+                            <div>
+                                <h3>Categoría</h3>
+                                <select class="select-categorias filtro-categoria">
+                                    <option value="servicios">Servicios</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <h3>Desde</h3>
+                                <input type="date" id="">
+                            </div>
+
+                            <div>
+                                <h3>Ordenar por</h3>
+                                <select name="" id="">
+                                    <option value="">Más recientes</option>
+                                    <option value="">Menos recientes</option>
+                                    <option value="">Mayor monto</option>
+                                    <option value="">Menor monto</option>
+                                    <option value="">A/Z</option>
+                                    <option value="">Z/A</option>
+                                </select>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-             <!-- filtros -->
-                <div class=" column is-11 div-filtro">
-                    <div class="flex-contenedor">
-                      <h2>Filtros</h2>
-                      <a id="ocultar-filtro-btn">Ocultar filtros</a>  
-                    </div>
-                    
-                  <div id="contenedor-filtros">
-                    <div>
-                        <h3>Tipo</h3>
-                        <select  id="filto-tipo">
-                            <option value="todos">Todos</option>
-                            <option value="gastos">Gastos</option>
-                            <option value="ganancias">Ganancias</option>
-                        </select>
-                    </div>
-
-                    <div>
-                        <h3>Categoría</h3>
-                        <select class="select-categorias filtro-categoria">
-                            <option value="servicios">Servicios</option>
-                        </select>
-                    </div>
-
-                    <div>
-                        <h3>Desde</h3>
-                        <input type="date" name="" id="">
-                    </div>
-
-                    <div>
-                        <h3>Ordenar por</h3>
-                        <select name="" id="">
-                            <option value="">Más recientes</option>
-                            <option value="">Menos recientes</option>
-                            <option value="">Mayor monto</option>
-                            <option value="">Menor monto</option>
-                            <option value="">A/Z</option>
-                            <option value="">Z/A</option>
-                        </select>
-                    </div>
-                  </div>
-                </div>
-            </div>
-
-         <!-- operaciones -->
-            <div class="column is-6 div-operaciones ">
-
+            <!-- operaciones -->
+            <div class="column is-two-quarters-mobile  is-one-thirds-tablet is-7-desktop div-operaciones">
+                <div class="container box contenedor-operaciones">
                 <div class="column titulo-operaciones">
                     <h2>Operaciones</h2>
-                    <a class="button is-danger" id="btn-operacion"> + Nueva operación</a>
+                    <a class="button is-danger btn-operacion" id="btn-operacion"> + Nueva operación</a>
                 </div>
 
                 <div id="sin-operaciones">
@@ -157,26 +157,30 @@
                         <p>cambia los filtros o arega operaciones</p>
                     </div>
                 </div>
-                <div id="con-operaciones" class="oculto" style="overflow: auto; height: 90%;">
+
+                <div id="con-operaciones" class="oculto">
                     <div class="column">
                         <div class="columns has-text-weight-semibold is-hidden-mobile">
-                        <div class="column is-3">Descripción</div>
-                        <div class="column is-3">Categoría</div>
-                        <div class="column is-2 has-text-right">Fecha</div>
-                        <div class="column is-2 has-text-right">Monto</div>
-                        <div class="column is-2 has-text-right">Acciones</div>
+                            <div class="column is-3">Descripción</div>
+                            <div class="column is-3">Categoría</div>
+                            <div class="column is-2 has-text-right">Fecha</div>
+                            <div class="column is-2 has-text-right">Monto</div>
+                            <div class="column is-2 has-text-right">Acciones</div>
+                        </div>
+                        <div id="operaciones"></div>
                     </div>
-                    <div id="operaciones"></div>
                 </div>
             </div>
+            </div>
         </div>
+
     </section>
     
 
     <!-- + nueva operación -->
     <section class="oculto" id="div-operaciones">
-      <div class=" div-ope">
-        <div class="column  is-7 contenedor-new-ope">
+      <div class="div-ope container">
+        <div class="column is-three-quarters-mobile  is-two-thirds-tablet is-7-desktop   contenedor-new-ope">
             <h2>Nueva operación</h2>
             <div class="panel-control">
                 <h3>Descripción</h3>
@@ -213,8 +217,8 @@
 
     <!-- edictar operación -->
     <section class="oculto" id="div-editar-operaciones">
-        <div class=" div-ope">
-          <div class="column  is-7 contenedor-new-ope">
+        <div class=" div-ope container">
+          <div class="column is-three-quarters-mobile  is-two-thirds-tablet is-7-desktop  contenedor-new-ope">
               <h2>Edictar operación</h2>
               <div class="panel-control">
                   <h3>Descripción</h3>
@@ -253,7 +257,7 @@
     --------------------------------->
     <section id="section-categorias" class="oculto">
         <div class="contenedor-categorias">
-            <div class="column is-6 div-categoria">
+            <div class="column is-three-quarters-mobile  is-two-thirds-tablet is-7-desktop div-categoria">
                 <h2>Categorías</h2>
                 <div>
                     <h3 style="margin-top: 10px;">Nombre</h3>
@@ -271,8 +275,8 @@
         SECTION DE REPORTES 
     --------------------------------->
     <section id="section-reportes" class="oculto">
-        <div class="column contenedor-reporte">
-          <div class="column is-6 contenedor-hijo-reporte">
+        <div class="column contenedor-reporte container">
+          <div class="column is-three-quarters-mobile  is-two-thirds-tablet is-7-desktop contenedor-hijo-reporte">
             <h2>Reportes</h2>
             <div class="contenedor-img-reporte">
                 <img src="imagenes/reporte.png" alt="reportes">
