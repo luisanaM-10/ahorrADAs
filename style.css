@@ -29,6 +29,10 @@ i{
     display: none;
 }
 
+#btn-balance:hover, #btn-categorias:hover, #btn-reportes:hover{
+background-color: black;
+}
+
 #div-burger{
     background-color: white;
 }
@@ -263,7 +267,7 @@ img{
     }
 }
 
-@media(max-width:500px){
+@media(max-width:560px){
     img{
         width: 240px;
     }
