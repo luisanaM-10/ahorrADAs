@@ -168,6 +168,9 @@ const pintarOperaciones = arr => {
     //         })
     //     })
     // })
+    spanGastos.innerHTML = totalGastos(operaciones)
+spanlGanancias.innerHTML = totalGanancia(operaciones)
+spanResumenTotal.innerHTML = totalGanancia(operaciones) - totalGastos(operaciones)
 }
 
 // const editarOperacion = arr => {
@@ -187,18 +190,14 @@ const pintarOperaciones = arr => {
 
 // total de ganancias
 const totalGanancia = arr => 
-  arr.filter(operacion => operacion.tipo === 'ganancias').reduce((prev, current) => 
-    prev + Number(current.monto) ,0)
+arr.filter(operacion => operacion.tipo === 'ganancias').reduce((prev, current) => 
+prev + Number(current.monto) ,0)
+
 
 // total de gastos
 const totalGastos = arr => 
    arr.filter(operacion => operacion.tipo === 'gastos').reduce((prev, current) => 
-   prev + Number(current.monto) ,0
-)
-
-spanGastos.innerHTML = totalGastos(operaciones)
-spanlGanancias.innerHTML = totalGanancia(operaciones)
-spanResumenTotal.innerHTML = totalGanancia(operaciones) - totalGastos(operaciones)
+   prev + Number(current.monto) ,0)
 
 // -----------------------
 //        Filtros 
