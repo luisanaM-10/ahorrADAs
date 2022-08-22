@@ -332,7 +332,8 @@ const pintarCategorias = () => {
 // })
 }
 
-console.log(categorias)
+// REPORTE
+
 
 
 const inicializar = () => {
