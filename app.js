@@ -10,7 +10,7 @@ const categoriaOperacion = document.getElementById('categoria-select-operacion')
 const inputFecha = document.getElementById('input-fecha'); // input de fecha (+Nueva operación)
 const divSinOperaciones = document.getElementById('sin-operaciones'); // div a mostrar cuando no hay operaciones 
 const divConOperaciones = document.getElementById('con-operaciones'); // div a mostrar cuando hay operaciones 
-// const divEditarOperacion = document.getElementById('div-editar-operaciones') // div de editar operación
+const divEditarOperacion = document.getElementById('div-editar-operaciones') // div de editar operación
 // const editarInputDescripcion = document.getElementById('editar-input-descripcion') // input de editar descripción (div de editar operación)
 // const editarInputMonto = document.getElementById('editar-input-monto') // input de editar monto (div de editar operación)
 // const editarSelectTipo = document.getElementById('editar-select-tipo') // select de editar tipo de operación (div de editar operación)
@@ -158,31 +158,31 @@ const pintarOperaciones = arr => {
             alertify.success('¡Operación eliminada con exito!')
         })
     })
-    // const btnEditar = document.querySelectorAll('.btn-editar')
-    //     btnEditar.forEach(btn => {
-    //         btn.addEventListener('click', e => {
-    //             const operacionAeditar = operaciones.filter(operacion  => operacion.id === e.target.dataset.id)
-    //             editarOperacion(operacionAeditar)
-    //         btnEnviarEdicion.addEventListener('click', () => {
-    //             console.log(operacionAeditar)
-    //         })
-    //     })
-    // })
+    const btnEditar = document.querySelectorAll('.btn-editar')
+        btnEditar.forEach(btn => {
+            btn.addEventListener('click', e => {
+                const operacionAeditar = operaciones.filter(operacion  => operacion.id === e.target.dataset.id)
+                editarOperacion(operacionAeditar)
+            btnEnviarEdicion.addEventListener('click', () => {
+                console.log(operacionAeditar)
+            })
+        })
+    })
     spanGastos.innerHTML = totalGastos(operaciones)
 spanlGanancias.innerHTML = totalGanancia(operaciones)
 spanResumenTotal.innerHTML = totalGanancia(operaciones) - totalGastos(operaciones)
 }
 
-// const editarOperacion = arr => {
-//     sectionBalance.classList.add('oculto')
-//     divEditarOperacion.classList.remove('oculto')
+const editarOperacion = arr => {
+    sectionBalance.classList.add('oculto')
+    divEditarOperacion.classList.remove('oculto')
 //     const {descripcion, monto, tipo, categoria, fecha} = arr[0]
 //     editarInputDescripcion.value = descripcion;
 //     editarInputMonto.value = monto;
 //     editarSelectTipo.value = tipo;
 //     editarSelectCategoria.value = categoria;
 //     editarInputFecha.valueAsDate = new Date(fecha)
-// }
+}
 
 // -----------------------
 //        Balance
@@ -228,19 +228,61 @@ btnOcultarFiltros.addEventListener('click', (e) => {
 // ------------------------------------------
 //              Categorías
 // ------------------------------------------
-let categorias = [
-    'Comida',
-    'Servicios',
-    'Salidas',
-    'Transporte',
-    'Educación',
-    'Trabajo'
-]
-// localStorage.setItem('categorias' , JSON.stringify(categorias))
-// JSON.parse(localStorage.getItem('categorias'))
-// agregar categoria
-// console.log(categorias)
+let categorias = JSON.parse(localStorage.getItem('categorias')) || [
+    {
+        id: uuidv4(),
+        nombre: 'Comida'
+    },
 
+    {
+        id: uuidv4(),
+        nombre: 'Servicios'
+    },
+    
+    {
+        id: uuidv4(),
+        nombre: 'Salidas'
+    },
+    
+    {
+        id: uuidv4(),
+        nombre: 'Transporte'
+    },
+    
+    {
+        id: uuidv4(),
+        nombre: 'Educación'
+    },
+    
+    {
+        id: uuidv4(),
+        nombre: 'Trabajo'
+    }
+]
+
+// let categorias = JSON.parse(localStorage.getItem('categorias')) || [
+//     'Comida',
+//     'Servicios',
+//     'Salidas',
+//     'Transporte',
+//     'Educación',
+//     'Trabajo'
+// ]
+
+// crear una categoria nueva
+const crearCategoria = () => {
+    btnAgregarCategoria.addEventListener('click', (e) => {
+      document.getElementById('categorias').innerHTML = ''
+      const Nuevacategoria = {
+        id: uuidv4(),
+        nombre: inputCategoria.value
+    }
+      categorias.push(Nuevacategoria)
+      localStorage.setItem('categorias' , JSON.stringify(categorias))
+      generarCategorias()
+      pintarCategorias()
+  }) 
+}
 
 // pintar las categorias en los selects
 const generarCategorias = () => {
@@ -251,7 +293,7 @@ const generarCategorias = () => {
         select.innerHTML = '<option>Todas</option>'
     }
     for (let c = 0; c < categorias.length; c++) {
-        select.innerHTML += `<option value=${categorias[c]}>${categorias[c]}</option>`
+        select.innerHTML += `<option value=${categorias[c].nombre}>${categorias[c].nombre}</option>`
     }
     }
 }
@@ -261,29 +303,36 @@ const pintarCategorias = () => {
         contenedorCategorias.innerHTML +=
         `<div class="column"> 
             <div class="colum is-6" style="display:flex; justify-content:space-between;"> 
-                <span class="tag is-primary is-light">${categorias[i]}</span> 
+                <span class="tag is-primary is-light">${categorias[i].nombre}</span> 
                 <div>
-                  <a href="#" style="margin-right:5px; font-size: 13px">Editar</a> 
-                  <a href="#" style="font-size: 13px">Eliminar</a>
+                  <a href="#" style="margin-right:5px; font-size: 13px" class="btn-editar-categoria" data-id=${categorias[i].id}>Editar</a> 
+                  <a href="#" style="font-size: 13px" class="btn-eliminar-categoria" data-id=${categorias[i].id}>Eliminar</a>
                 </div>
             </div>
         </div>`
     }
+    // const btnEliminarCategoria = document.querySelectorAll('.btn-eliminar-categoria')
+    // btnEliminarCategoria.forEach(btn => {
+    // btn.addEventListener('click', e => {
+    //     const arregloSinCategoria = categorias.filter(categoria  => categoria.id !== e.target.dataset.id)
+    //     localStorage.setItem('categorias', JSON.stringify(arregloSinCategoria))
+    //     categorias = JSON.parse(localStorage.getItem('categorias'))
+    //     pintarCategorias(categorias)
+    //     generarCategorias(categorias)
+    //     alertify.success('¡Categoria eliminada con exito!')
+    // })
+// })
+// const btnEditarCategoria = document.querySelectorAll('.btn-editar-categoria')
+// btnEditarCategoria.forEach(btn => {
+//     btn.addEventListener('click', e => {
+//         sectionCategorias.classList.add('oculto')
+//         document.getElementById('div-editar-categoria').classList.remove('oculto')
+// })
+
+// })
 }
 
-// crear una categoria nueva
-// const crearCategoria = () => {
-//   btnAgregarCategoria.addEventListener('click', (e) => {
-//     document.getElementById('categorias').innerHTML = ''
-//     const Nuevacategoria = inputCategoria.value
-//     categorias.push(Nuevacategoria)
-//     localStorage.setItem('categorias' , JSON.stringify(categorias))
-//     generarCategorias()
-//     pintarCategorias()
-//     console.log(categorias)
-// }) 
-
-// }
+console.log(categorias)
 
 
 const inicializar = () => {
@@ -295,7 +344,7 @@ const inicializar = () => {
     pintarOperaciones(operaciones)
     generarCategorias()
     pintarCategorias()
-    // crearCategoria()
+    crearCategoria()
     totalGastos(operaciones)
     totalGanancia(operaciones)
 }
