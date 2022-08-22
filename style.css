@@ -220,6 +220,7 @@ img{
 /* ---------------------------
     SECTION DE REPORTES
 ---------------------------- */
+/* Sin reporte */
 .contenedor-reporte{
     display: flex;
     justify-content: center;
@@ -243,6 +244,19 @@ img{
     text-align: center;
 }
 
+/* Con reporte */
+.panel-flex{
+    display: flex;
+}
+
+.over-flow-mio{
+    overflow: auto;
+    height: 600px;
+}
+.negrita{
+    font-weight: 600;
+    font-size: 16px;
+}
 /*-------------------
     media query
 -------------------*/
