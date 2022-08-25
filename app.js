@@ -11,11 +11,11 @@ const inputFecha = document.getElementById('input-fecha'); // input de fecha (+N
 const divSinOperaciones = document.getElementById('sin-operaciones'); // div a mostrar cuando no hay operaciones 
 const divConOperaciones = document.getElementById('con-operaciones'); // div a mostrar cuando hay operaciones 
 const divEditarOperacion = document.getElementById('div-editar-operaciones') // div de editar operación
-// const editarInputDescripcion = document.getElementById('editar-input-descripcion') // input de editar descripción (div de editar operación)
-// const editarInputMonto = document.getElementById('editar-input-monto') // input de editar monto (div de editar operación)
-// const editarSelectTipo = document.getElementById('editar-select-tipo') // select de editar tipo de operación (div de editar operación)
-// const editarSelectCategoria = document.getElementById('editar-select-categoria') // select de editar categotia (div de editar operación)
-// const editarInputFecha = document.getElementById('editar-input-fecha') // input de editar fecha (div de editar operación)
+const editarInputDescripcion = document.getElementById('editar-input-descripcion') // input de editar descripción (div de editar operación)
+const editarInputMonto = document.getElementById('editar-input-monto') // input de editar monto (div de editar operación)
+const editarSelectTipo = document.getElementById('editar-select-tipo') // select de editar tipo de operación (div de editar operación)
+const editarSelectCategoria = document.getElementById('editar-select-categoria') // select de editar categotia (div de editar operación)
+const editarInputFecha = document.getElementById('editar-input-fecha') // input de editar fecha (div de editar operación)
 const spanGastos = document.getElementById('total-gastos') // span de total de gastos (div de balance / section de balance)
 const spanlGanancias = document.getElementById('total-ganancias') // span de total de ganancias (div de balance / section de balance)
 const spanResumenTotal = document.getElementById('resumen-total') // span de total (div de balance / section de balance)
@@ -78,7 +78,6 @@ btnBurger.addEventListener("click", (e) => {
 // -----------------------------------------
 //            Operaciones
 // -----------------------------------------
-
 // btn de + nueva operacion
 btnOperacion.addEventListener("click", (e) => {
     sectionBalance.classList.add("oculto")
@@ -88,11 +87,11 @@ let operaciones = JSON.parse(localStorage.getItem('operaciones')) || [];
 
 const mostrarOperaciones = (arr) => {
     if (!arr.length) {
-      divSinOperaciones.classList.remove('oculto');
-      divConOperaciones.classList.add('oculto');
+        divSinOperaciones.classList.remove('oculto');
+        divConOperaciones.classList.add('oculto');
     } else {
-      divSinOperaciones.classList.add('oculto');
-      divConOperaciones.classList.remove('oculto');
+        divSinOperaciones.classList.add('oculto');
+        divConOperaciones.classList.remove('oculto');
     }
 }
 
@@ -104,7 +103,7 @@ btnCancelar.addEventListener('click', (e) => {
 
 // btn de enviar operación
 btnEnviar.addEventListener('click', (e) => {
-    if(inputDescripcion.value.trim().length === 0 || inputMonto.value === 0){
+    if (inputDescripcion.value.trim().length === 0 || inputMonto.value === 0) {
         alertify.warning('Todos los campos son necesario y el monto tiene que ser mayor a 0')
         return
     }
@@ -124,7 +123,7 @@ btnEnviar.addEventListener('click', (e) => {
     tipoDeOperacion.value = 'gastos',
     categoriaOperacion.value = 'servicios',
     mostrarOperaciones(operaciones)
-    localStorage.setItem('operaciones' , JSON.stringify(operaciones))
+    localStorage.setItem('operaciones', JSON.stringify(operaciones))
     pintarOperaciones(operaciones);
     alertify.success('¡Operación agregada con exito!');
 })
@@ -132,8 +131,8 @@ btnEnviar.addEventListener('click', (e) => {
 const pintarOperaciones = arr => {
     let str = '';
     arr.forEach((operacion) => {
-      str = str +
-        `
+        str = str +
+            `
       <div class="nueva-operacion">
         <div class="column is-3" style="font-weight: 600;">${operacion.descripcion}</div>
         <div class="column is-3"><span class="tag is-primary is-light">${operacion.categoria}</span></div>
@@ -145,12 +144,12 @@ const pintarOperaciones = arr => {
         </div>
       </div>
       `
-    document.getElementById('operaciones').innerHTML = str;  
-})  
+        document.getElementById('operaciones').innerHTML = str;
+    })
     const btnEliminar = document.querySelectorAll('.btn-eliminar')
     btnEliminar.forEach(btn => {
         btn.addEventListener('click', e => {
-            const arregloSinOperacion = operaciones.filter(operacion  => operacion.id !== e.target.dataset.id)
+            const arregloSinOperacion = operaciones.filter(operacion => operacion.id !== e.target.dataset.id)
             localStorage.setItem('operaciones', JSON.stringify(arregloSinOperacion))
             operaciones = JSON.parse(localStorage.getItem('operaciones'))
             pintarOperaciones(operaciones)
@@ -159,30 +158,62 @@ const pintarOperaciones = arr => {
         })
     })
     const btnEditar = document.querySelectorAll('.btn-editar')
-        btnEditar.forEach(btn => {
-            btn.addEventListener('click', e => {
-                const operacionAeditar = operaciones.filter(operacion  => operacion.id === e.target.dataset.id)
-                editarOperacion(operacionAeditar)
+    btnEditar.forEach(btn => {
+        btn.addEventListener('click', e => {
+            const operacionAeditar = operaciones.filter(operacion => operacion.id === e.target.dataset.id)
+            editarOperacion(operacionAeditar)
+
             btnEnviarEdicion.addEventListener('click', () => {
-                console.log(operacionAeditar)
+                const filtrar = operaciones.filter(operacion => operacion.id === operacionAeditar[0].id)
+                const filtrado = filtrar[0]
+
+                filtrado.descripcion = editarInputDescripcion.value
+                filtrado.id = operacionAeditar[0].id
+                filtrado.monto = editarInputMonto.value
+                filtrado.tipo = editarSelectTipo.value
+                filtrado.categoria = editarSelectCategoria.value
+                filtrado.fecha = editarInputFecha.value
+
+                const operacionEditada = operaciones.map((operacion) => operacion.id === operacionAeditar[0].id ? filtrado : operacion)
+                localStorage.setItem('operaciones', JSON.stringify(operacionEditada));
+                const operacionesEditadas = JSON.parse(localStorage.getItem('operaciones'))
+                pintarOperaciones(operacionesEditadas)
+
+                sectionBalance.classList.remove('oculto')
+                divEditarOperacion.classList.add('oculto')
+                alertify.success('¡Operación editada con exito!')
             })
+
         })
     })
     spanGastos.innerHTML = totalGastos(operaciones)
-spanlGanancias.innerHTML = totalGanancia(operaciones)
-spanResumenTotal.innerHTML = totalGanancia(operaciones) - totalGastos(operaciones)
+    spanlGanancias.innerHTML = totalGanancia(operaciones)
+    spanResumenTotal.innerHTML = totalGanancia(operaciones) - totalGastos(operaciones)
 }
 
+// const pintarObejo =
 const editarOperacion = arr => {
+    if (arr.length === 0) return
     sectionBalance.classList.add('oculto')
     divEditarOperacion.classList.remove('oculto')
-//     const {descripcion, monto, tipo, categoria, fecha} = arr[0]
-//     editarInputDescripcion.value = descripcion;
-//     editarInputMonto.value = monto;
-//     editarSelectTipo.value = tipo;
-//     editarSelectCategoria.value = categoria;
-//     editarInputFecha.valueAsDate = new Date(fecha)
+    const {
+        descripcion,
+        monto,
+        tipo,
+        categoria,
+        fecha
+    } = arr[0]
+    editarInputDescripcion.value = descripcion;
+    editarInputMonto.value = monto;
+    editarSelectTipo.value = tipo;
+    editarSelectCategoria.value = categoria;
+    editarInputFecha.valueAsDate = new Date(fecha)
 }
+
+btnCancelarEdicion.addEventListener('click', (e) => {
+    sectionBalance.classList.remove("oculto")
+    divEditarOperacion.classList.add("oculto")
+})
 
 // -----------------------
 //        Balance
@@ -311,16 +342,16 @@ const pintarCategorias = () => {
             </div>
         </div>`
     }
-    // const btnEliminarCategoria = document.querySelectorAll('.btn-eliminar-categoria')
-    // btnEliminarCategoria.forEach(btn => {
-    // btn.addEventListener('click', e => {
-    //     const arregloSinCategoria = categorias.filter(categoria  => categoria.id !== e.target.dataset.id)
-    //     localStorage.setItem('categorias', JSON.stringify(arregloSinCategoria))
-    //     categorias = JSON.parse(localStorage.getItem('categorias'))
-    //     pintarCategorias(categorias)
-    //     generarCategorias(categorias)
-    //     alertify.success('¡Categoria eliminada con exito!')
-    // })
+//     const btnEliminarCategoria = document.querySelectorAll('.btn-eliminar-categoria')
+//     btnEliminarCategoria.forEach(btn => {
+//     btn.addEventListener('click', e => {
+//         const arregloSinCategoria = categorias.filter(categoria  => categoria.id !== e.target.dataset.id)
+//         localStorage.setItem('categorias', JSON.stringify(arregloSinCategoria))
+//         categorias = JSON.parse(localStorage.getItem('categorias'))
+//         pintarCategorias(categorias)
+//         generarCategorias(categorias)
+//         alertify.success('¡Categoria eliminada con exito!')
+//     })
 // })
 // const btnEditarCategoria = document.querySelectorAll('.btn-editar-categoria')
 // btnEditarCategoria.forEach(btn => {
