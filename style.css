@@ -49,6 +49,7 @@ section{
     height: 100%;
     display: flex;
     justify-content: center;
+    background-color: rgb(222, 222, 222);
 }
 
 .div-balance-filtros{
@@ -266,39 +267,15 @@ img{
         display: block;
         margin-top: 10px;
     }
-    body{
-        height: 120vh;
-    }
-    #section-balance{
+    .section-balance{
         width: 100%;
         padding: 10px;
     }
     .titulo{
         font-size: 25px;
     }
-    .contenedor-operaciones{
-        max-height: 450px;
-    }
-}
-
-@media(max-width:560px){
-    img{
-        width: 240px;
-    }
-    h2{
-        font-size: 25px;
-    }
-    body{
-        height: 105vh;
-    }
-    .titulo-operaciones{
-        display: block;
-    }
-    .btn-operacion{
-        margin-top: 5px;
-    }
-    .contenedor-operaciones{
-        max-height: 380px;
+    #img-operaciones{
+        width: 350px;
     }
 }
 
@@ -307,3 +284,26 @@ img{
         flex-wrap: wrap;
     }
 }
+
+@media(max-width:560px){
+    img{
+        width: 230px;
+    }
+    h2{
+        font-size: 25px;
+    }
+    .titulo-operaciones{
+        display: block;
+    }
+    .btn-operacion{
+        margin-top: 5px;
+    }
+    h3{
+        font-size: 18px;
+    }
+    p{
+        font-size: 16px;
+    }
+}
+
+
