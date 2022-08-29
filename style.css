@@ -252,7 +252,7 @@ img{
 
 .over-flow-mio{
     overflow: auto;
-    height: 600px;
+    /* height: 600px; */
 }
 .negrita{
     font-weight: 600;
