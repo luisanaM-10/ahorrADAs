@@ -259,7 +259,7 @@ const totalGastos = arr =>
 // btnOcultarFiltros.addEventListener('click', (e) => {
 //     contenedorFiltros.classList.toggle("oculto")
 // })
-// // filtros
+// // // filtros
 // let capiaOperaciones = [...operaciones]
 
 // const filtroCategoria = document.getElementById('filtro-categoria'); // filtro de por categoria
@@ -270,54 +270,53 @@ const totalGastos = arr =>
 // const filtros = (e) => {
 //     const porCategoria = filtroCategoria.value;
 //     const porTipo = filtroTipo.value;
-//     const porOrden =  filtroOrden.value;
-//     // const porFecha = filtroFecha.value
-  
+//     const porOrden = filtroOrden.value;
+//     // const porFecha = filtroFecha.value;
+
 //     let operaciones = capiaOperaciones;
-  
+
 //     if (porCategoria !== 'todas') {
-//       operaciones = operaciones.filter(operacion => operacion.categoria === porCategoria)
+//         operaciones = operaciones.filter(operacion => operacion.categoria === porCategoria)
 //     }
-  
+
 //     if (porTipo !== 'todos') {
-//       operaciones = operaciones.filter(operacion => operacion.tipo === porTipo)
+//         operaciones = operaciones.filter(operacion => operacion.tipo === porTipo)
 //     }
-  
+
 //     if (porOrden === "menor_monto") {
-//       operaciones = operaciones.sort(
-//         (a, b) => Number(a.monto) - Number(b.monto)
-//       );
+//         operaciones = operaciones.sort(
+//             (a, b) => Number(a.monto) - Number(b.monto)
+//         );
 //     }
 //     if (porOrden === "mayor_monto") {
-//       operaciones = operaciones.sort(
-//         (a, b) => Number(b.monto) - Number(a.monto)
-//       );
+//         operaciones = operaciones.sort(
+//             (a, b) => Number(b.monto) - Number(a.monto)
+//         );
 //     }
 //     if (porOrden === 'A/Z') {
-//       operaciones = operaciones.sort((a, b) => {
-//         if (a.descripcion.toLowerCase() < b.descripcion.toLowerCase()) {
-//           return -1
-//         }
-//       })
+//         operaciones = operaciones.sort((a, b) => {
+//             if (a.descripcion.toLowerCase() < b.descripcion.toLowerCase()) {
+//                 return -1
+//             }
+//         })
 //     }
 //     if (porOrden === 'Z/A') {
-//       operaciones = operaciones.sort((a, b) => {
-//         if (a.descripcion.toLowerCase() > b.descripcion.toLowerCase()) {
-//           return -1
-//         }
-//       })
+//         operaciones = operaciones.sort((a, b) => {
+//             if (a.descripcion.toLowerCase() > b.descripcion.toLowerCase()) {
+//                 return -1
+//             }
+//         })
 //     }
 //     if (porOrden === 'mas_reciente') {
-//       operaciones = operaciones.sort((a, b) =>
-//         new Date(a.fecha) - new Date(b.fecha))
+//         operaciones = operaciones.sort((a, b) =>
+//             new Date(a.fecha) - new Date(b.fecha))
 //     }
-//     // if(capiaOperaciones.filter(operacion => operacion.fecha == e.target.value)){
-//     //     const filtradoDeFecha = capiaOperaciones.filter(operacion => operacion.fecha == e.target.value)
-//     //     return pintarOperaciones(filtradoDeFecha) 
-//     // }
 
+//     // if (porFecha !== new Date()) {
+//     //     operaciones = operaciones.filter(operacion => operacion.fecha == e.target.value)
+//     // }
 //     pintarOperaciones(operaciones)
-//   }
+// }
 
 // // filtroFecha.addEventListener('change', (e) => {
 // //     const filtradoDeFecha = capiaOperaciones.filter(operacion => operacion.fecha == e.target.value)
@@ -325,11 +324,19 @@ const totalGastos = arr =>
 // //     pintarOperaciones(filtradoDeFecha)
 // // }) 
 
-  
+// // const filtroDeFecha =  (e) => {
+// //     const filtradoDeFecha = capiaOperaciones.filter(operacion => operacion.fecha == e.target.value)
+// //     // console.log(filtradoDeFecha)
+// //     pintarOperaciones(filtradoDeFecha)
+// // }
+
 //   filtroCategoria.addEventListener('change', filtros);
 //   filtroTipo.addEventListener('change', filtros);
 //   filtroOrden.addEventListener('change', filtros);
+//   filtroFecha.addEventListener('change', filtroDeFecha)
 //   filtroFecha.addEventListener('change', filtros)
+//   filtroFecha.addEventListener('change', filtroDeFecha, filtros)
+
 
 
 // ------------------------------------------
@@ -367,20 +374,14 @@ let categorias = JSON.parse(localStorage.getItem('categorias')) || [
     }
 ]
 
-// let categorias = JSON.parse(localStorage.getItem('categorias')) || [
-//     'Comida',
-//     'Servicios',
-//     'Salidas',
-//     'Transporte',
-//     'Educación',
-//     'Trabajo'
-// ]
-
 // pintar las categorias en los selects
 const generarCategorias = () => {
+    // selects.innerHTML = '';
+    for (let j = 0; j < selects.length; j++) {
+        selects[j].innerHTML = "";
+      }
     for (let i = 0; i < selects.length; i++) {
     const select = selects[i];
-    selects.innerHTML = '';
     if (select.classList.contains('filtro-categoria')) {
         select.innerHTML = '<option value="todas">Todas</option>'
     }
@@ -419,9 +420,41 @@ const pintarCategorias = () => {
 //     btn.addEventListener('click', e => {
 //         sectionCategorias.classList.add('oculto')
 //         document.getElementById('div-editar-categoria').classList.remove('oculto')
+//         categoriaAEditar = categorias.filter((categoria) => categoria.id === e.target.dataset.id);
+//         categoriaAEditar.forEach((categoria) => {
+//             inputEditarCategoria.value = categoria.nombre;
+//           });
+          
+//             btnEnviarEdicion.addEventListener ('click', (e) =>{ const cambioCategoria = categorias.filter(
+//               (categoria) => categoria.id === categoriaAEditar[0].id
+//             );
+        
+//             const editarOpAsociadas = (arr) => {
+//               arr.forEach((operacionX) => {
+//                 if( operaciones.categoria ===  categoriaAEditar[0].nombre){
+//                     operaciones.categoria = inputEditarCategoria.value
+//                   }
+//                   })
+//                 localStorage.setItem("operaciones", JSON.stringify(arr));
+//                 const nuevasOperaciones = JSON.parse(localStorage.getItem("operaciones"));
+//                 pintarOperaciones(nuevasOperaciones);
+//               };
+          
+//               editarOpAsociadas(operaciones)
+        
+//             const filtrada = cambioCategoria[0];
+//             filtrada.nombre = inputEditarCategoria.value;
+//             const accionEditar = categorias.map((categoria) =>
+//               categoria.id === categoriaAEditar[0].id ? filtrada : categoria
+//             );
+//             localStorage.setItem("categorias", JSON.stringify(accionEditar));
+//             categorias = JSON.parse(localStorage.getItem("categorias"));
+//             pintarCategorias(categorias);
+//             generarCategorias(categorias);
+//           });
+// })
 // })
 
-// })
 }
 
 // crear una categoria nueva
@@ -434,11 +467,12 @@ const crearCategoria = () => {
     }
       categorias.push(Nuevacategoria);
       localStorage.setItem('categorias' , JSON.stringify(categorias));
-
       generarCategorias();
       pintarCategorias();
+      inputCategoria.value = "";
   }) 
 }
+
 
 // ----------------------
 //      Reportes
