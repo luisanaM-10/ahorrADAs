@@ -112,7 +112,7 @@
                         <div id="contenedor-filtros">
                             <div>
                                 <h3>Tipo</h3>
-                                <select id="filto-tipo">
+                                <select id="filtro-tipo">
                                     <option value="todos">Todos</option>
                                     <option value="gastos">Gastos</option>
                                     <option value="ganancias">Ganancias</option>
@@ -121,25 +121,25 @@
 
                             <div>
                                 <h3>Categoría</h3>
-                                <select class="select-categorias filtro-categoria">
+                                <select class="select-categorias filtro-categoria" id="filtro-categoria">
                                     <option value="servicios">Servicios</option>
                                 </select>
                             </div>
 
                             <div>
                                 <h3>Desde</h3>
-                                <input type="date" id="">
+                                <input type="date" id="filtro-fecha">
                             </div>
 
                             <div>
                                 <h3>Ordenar por</h3>
-                                <select name="" id="">
-                                    <option value="">Más recientes</option>
+                                <select id="filtro-de-orden">
+                                    <option value="mas_reciente">Más recientes</option>
                                     <option value="">Menos recientes</option>
-                                    <option value="">Mayor monto</option>
-                                    <option value="">Menor monto</option>
-                                    <option value="">A/Z</option>
-                                    <option value="">Z/A</option>
+                                    <option value="mayor_monto">Mayor monto</option>
+                                    <option value="menor_monto">Menor monto</option>
+                                    <option value="A/Z">A/Z</option>
+                                    <option value="Z/A">Z/A</option>
                                 </select>
                             </div>
                         </div>
@@ -302,14 +302,14 @@
                 <div class="contenedor-img-reporte oculto">
                     <img src="imagenes/reporte.png" alt="reportes">
                     <h3>Operaciones insuficientes</h3>
-                    <p>Prueba agregando más operaciones</p>
+                    <p>Prueba agregando más operaciones </p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- CON REPORTE -->
-    <section id="" class="oculto">
+    <section id="con-reporte" class="oculto">
         <div class="container" style="margin-top: 30px;">
             <div class="box over-flow-mio" >
                 <h2>Reportes</h2>
