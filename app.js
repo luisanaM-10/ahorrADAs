@@ -392,6 +392,7 @@ const generarCategorias = () => {
 }
 
 const pintarCategorias = () => {
+    contenedorCategorias.innerHTML = ""
     for (let i = 0; i < categorias.length; i++) {
         contenedorCategorias.innerHTML +=
         `<div class="column"> 
@@ -404,17 +405,17 @@ const pintarCategorias = () => {
             </div>
         </div>`
     }
-//     const btnEliminarCategoria = document.querySelectorAll('.btn-eliminar-categoria')
-//     btnEliminarCategoria.forEach(btn => {
-//     btn.addEventListener('click', e => {
-//         const arregloSinCategoria = categorias.filter(categoria  => categoria.id !== e.target.dataset.id)
-//         localStorage.setItem('categorias', JSON.stringify(arregloSinCategoria))
-//         categorias = JSON.parse(localStorage.getItem('categorias'))
-//         pintarCategorias(categorias)
-//         generarCategorias(categorias)
-//         alertify.success('¡Categoria eliminada con exito!')
-//     })
-// })
+    const btnEliminarCategoria = document.querySelectorAll('.btn-eliminar-categoria')
+    btnEliminarCategoria.forEach(btn => {
+    btn.addEventListener('click', e => {
+        // ELIMINAR CATEGORIA
+        const arregloSinCategoria = categorias.filter(categoria  => categoria.id !== e.target.dataset.id)
+        // ELIMINAR OPERACIÓN A LA VEZ 
+        const categoriaAEliminar = categorias.find((categoria) => categoria.id === e.target.dataset.id).nombre;
+        const operacionEliminada = operaciones.filter((operacion) => operacion.categoria !== categoriaAEliminar);
+        actualizarArreglos(arregloSinCategoria, operacionEliminada)
+    })
+})
 // const btnEditarCategoria = document.querySelectorAll('.btn-editar-categoria')
 // btnEditarCategoria.forEach(btn => {
 //     btn.addEventListener('click', e => {
@@ -454,7 +455,20 @@ const pintarCategorias = () => {
 //           });
 // })
 // })
+}
 
+const actualizarArreglos = (arrCategorias, arrOperaciones) => {
+    // categorias
+    localStorage.setItem('categorias', JSON.stringify(arrCategorias));
+    categorias = JSON.parse(localStorage.getItem('categorias'));
+    pintarCategorias(categorias)
+    generarCategorias(categorias)
+    alertify.success('¡Categoria eliminada con exito!')
+
+    // operaciones
+    localStorage.setItem('operaciones', JSON.stringify(arrOperaciones));
+    operaciones = JSON.parse(localStorage.getItem('operaciones'));
+    pintarOperaciones(operaciones)
 }
 
 // crear una categoria nueva
