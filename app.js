@@ -26,6 +26,10 @@ const inputCategoria = document.getElementById('categoria-input'); // input de c
 const inputEditarCategoria = document.getElementById('input-editar-categoria') // input de editar categoria
 const divEditarCategorias = document.getElementById('div-editar-categoria') // div de editar categorias
 
+const filtroCategoria = document.getElementById('filtro-categoria'); // filtro de por categoria
+const filtroTipo = document.getElementById('filtro-tipo');  // filtro de por tipo
+const filtroOrden = document.getElementById('filtro-de-orden') // filtro de por orden 
+const filtroFecha = document.getElementById('filtro-fecha') // filtro de por fecha
 
 const btnBalance = document.getElementById("btn-balance"); // btn de balance
 const btnCategorias = document.getElementById("btn-categorias"); // btn de categorías
@@ -260,87 +264,67 @@ const totalGastos = arr =>
 //        Filtros 
 // -----------------------
 
-// // btn de ocultar filtros
-// btnOcultarFiltros.addEventListener('click', (e) => {
-//     contenedorFiltros.classList.toggle("oculto")
-// })
-// // // filtros
-// let capiaOperaciones = [...operaciones]
+ // btn de ocultar filtros
+btnOcultarFiltros.addEventListener('click', (e) => {
+    contenedorFiltros.classList.toggle("oculto")
+})
+// filtros
+let capiaOperaciones = [...operaciones]
 
-// const filtroCategoria = document.getElementById('filtro-categoria'); // filtro de por categoria
-// const filtroTipo = document.getElementById('filtro-tipo');  // filtro de por tipo
-// const filtroOrden = document.getElementById('filtro-de-orden') // filtro de por orden 
-// const filtroFecha = document.getElementById('filtro-fecha') // filtro de por fecha
+const filtros = (e) => {
+    const porCategoria = filtroCategoria.value;
+    const porTipo = filtroTipo.value;
+    const porOrden = filtroOrden.value;
+    const ordenDesde = filtroFecha.value;
 
-// const filtros = (e) => {
-//     const porCategoria = filtroCategoria.value;
-//     const porTipo = filtroTipo.value;
-//     const porOrden = filtroOrden.value;
-//     // const porFecha = filtroFecha.value;
+    let operaciones = capiaOperaciones;
 
-//     let operaciones = capiaOperaciones;
+    if (ordenDesde !== new Date()) {
+        operaciones = operaciones.filter(operacion => operacion.fecha == ordenDesde)
+    }
+    if (porCategoria !== 'todas') {
+        operaciones = operaciones.filter(operacion => operacion.categoria === porCategoria)
+    }
 
-//     if (porCategoria !== 'todas') {
-//         operaciones = operaciones.filter(operacion => operacion.categoria === porCategoria)
-//     }
+    if (porTipo !== 'todos') {
+        operaciones = operaciones.filter(operacion => operacion.tipo === porTipo)
+    }
 
-//     if (porTipo !== 'todos') {
-//         operaciones = operaciones.filter(operacion => operacion.tipo === porTipo)
-//     }
+    if (porOrden === "menor_monto") {
+        operaciones = operaciones.sort(
+            (a, b) => Number(a.monto) - Number(b.monto)
+        );
+    }
+    if (porOrden === "mayor_monto") {
+        operaciones = operaciones.sort(
+            (a, b) => Number(b.monto) - Number(a.monto)
+        );
+    }
+    if (porOrden === 'A/Z') {
+        operaciones = operaciones.sort((a, b) => {
+            if (a.descripcion.toLowerCase() < b.descripcion.toLowerCase()) {
+                return -1
+            }
+        })
+    }
+    if (porOrden === 'Z/A') {
+        operaciones = operaciones.sort((a, b) => {
+            if (a.descripcion.toLowerCase() > b.descripcion.toLowerCase()) {
+                return -1
+            }
+        })
+    }
+    if (porOrden === 'mas_reciente') {
+        operaciones = operaciones.sort((a, b) =>
+            new Date(a.fecha) - new Date(b.fecha))
+    }
+    pintarOperaciones(operaciones)
+}
 
-//     if (porOrden === "menor_monto") {
-//         operaciones = operaciones.sort(
-//             (a, b) => Number(a.monto) - Number(b.monto)
-//         );
-//     }
-//     if (porOrden === "mayor_monto") {
-//         operaciones = operaciones.sort(
-//             (a, b) => Number(b.monto) - Number(a.monto)
-//         );
-//     }
-//     if (porOrden === 'A/Z') {
-//         operaciones = operaciones.sort((a, b) => {
-//             if (a.descripcion.toLowerCase() < b.descripcion.toLowerCase()) {
-//                 return -1
-//             }
-//         })
-//     }
-//     if (porOrden === 'Z/A') {
-//         operaciones = operaciones.sort((a, b) => {
-//             if (a.descripcion.toLowerCase() > b.descripcion.toLowerCase()) {
-//                 return -1
-//             }
-//         })
-//     }
-//     if (porOrden === 'mas_reciente') {
-//         operaciones = operaciones.sort((a, b) =>
-//             new Date(a.fecha) - new Date(b.fecha))
-//     }
-
-//     // if (porFecha !== new Date()) {
-//     //     operaciones = operaciones.filter(operacion => operacion.fecha == e.target.value)
-//     // }
-//     pintarOperaciones(operaciones)
-// }
-
-// // filtroFecha.addEventListener('change', (e) => {
-// //     const filtradoDeFecha = capiaOperaciones.filter(operacion => operacion.fecha == e.target.value)
-// //     // console.log(filtradoDeFecha)
-// //     pintarOperaciones(filtradoDeFecha)
-// // }) 
-
-// // const filtroDeFecha =  (e) => {
-// //     const filtradoDeFecha = capiaOperaciones.filter(operacion => operacion.fecha == e.target.value)
-// //     // console.log(filtradoDeFecha)
-// //     pintarOperaciones(filtradoDeFecha)
-// // }
-
-//   filtroCategoria.addEventListener('change', filtros);
-//   filtroTipo.addEventListener('change', filtros);
-//   filtroOrden.addEventListener('change', filtros);
-//   filtroFecha.addEventListener('change', filtroDeFecha)
-//   filtroFecha.addEventListener('change', filtros)
-//   filtroFecha.addEventListener('change', filtroDeFecha, filtros)
+filtroCategoria.addEventListener('change', filtros);
+filtroTipo.addEventListener('change', filtros);
+filtroOrden.addEventListener('change', filtros);
+filtroFecha.addEventListener('change', filtros);
 
 
 
@@ -395,6 +379,7 @@ const generarCategorias = () => {
     }
 }
 
+// Mostrar las categorias en la section de categoria
 const pintarCategorias = () => {
     contenedorCategorias.innerHTML = ""
     for (let i = 0; i < categorias.length; i++) {
@@ -526,6 +511,7 @@ const crearCategoria = () => {
 //   }
 
 // total por categoria
+
 
 // --------------------------
 //      Inicializar
