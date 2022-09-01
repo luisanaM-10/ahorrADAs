@@ -91,6 +91,11 @@ const mostarReporte = (e) => {
     }
     // totalPorMes(operaciones)
     totalesPorCategoria(operaciones, categorias)
+    mayorCategoria(operaciones)
+    // menorCategoria(operaciones)
+    // balanceMayor(operaciones)
+
+    // mesMayorGananciaYGasto(operaciones)
 }
 btnReportes.addEventListener("click", mostarReporte)
 btnReportes2.addEventListener("click", mostarReporte)
@@ -492,6 +497,68 @@ const crearCategoria = () => {
 //      Reportes
 // ----------------------
 
+// RESUMEN
+
+// categoria con mayor ganancia 
+const mayorCategoria = (arr) => {
+    let montoMayorBalance  = 0;
+    let categoriaMayorBalance = ""
+    // const balance = [...porCategoriaGanancia, ...porCategoriaGasto]
+    
+    categorias.forEach(categoria => {
+        // mayor ganancia
+    const porCategoriaGanancia = arr.filter(operacion => operacion.tipo === 'ganancias').sort((a, b) => Number(b.monto) - Number(a.monto));
+    document.getElementById('categoria-mayor-resumen').innerHTML = `<span style="color: green;font-weight: 600;">+${porCategoriaGanancia[0].monto}</span>`
+    document.getElementById('categoria-mayor-nombre').innerHTML = `<span class="tag is-primary is-light">${porCategoriaGanancia[0].categoria}</span>`
+
+    // mayor gasto
+    const porCategoriaGasto = arr.filter(operacion => operacion.tipo === 'gastos').sort((a, b) => Number(b.monto) - Number(a.monto));
+    document.getElementById('categoria-menor-resumen').innerHTML = `<span style="color: red;font-weight: 600;">-${porCategoriaGasto[0].monto}</span>`
+    document.getElementById('categoria-menor-nombre').innerHTML = `<span class="tag is-primary is-light">${porCategoriaGasto[0].categoria}</span>`
+    // console.log(porCategoriaGanancia[i].monto - porCategoriaGasto[i].monto)
+    // const balanceCategoria = porCategoriaGanancia - porCategoriaGasto;
+
+  
+
+})
+}
+
+
+// const balance = []
+
+// const balanceMayor = (arr) => {
+//     categorias.forEach(operaciones =>{
+//     const porCategoriaGanancia = arr.filter(operacion => operacion.tipo === 'ganancias').sort((a, b) => Number(b.monto) - Number(a.monto));
+//     const porCategoriaGasto = arr.filter(operacion => operacion.tipo === 'gastos').sort((a, b) => Number(b.monto) - Number(a.monto));
+//     // const balance = [...porCategoriaGasto, ...porCategoriaGanancia]
+//     const totalBalance =  balance.map((balance) => porCategoriaGanancia - porCategoriaGasto) 
+//     console.log(totalBalance)
+//     })
+//     // const operacionActualizada = operaciones.map((operacion) =>operacion.id === opeEditada.id ? opeEditada : operacion);
+
+// }
+
+// TOTAL POR CATEGORIA 
+const divTotalCategoria = document.getElementById('total-categoria') // total por categoria (reportes)
+
+const totalesPorCategoria = (operaciones, categorias) => {
+    divTotalCategoria.innerHTML = ""
+    categorias.forEach(categoria => {
+        const porCategoria = operaciones.filter(operacion => operacion.categoria === categoria.nombre)
+        const porCategoriaGanancia = porCategoria.filter(operacion => operacion.tipo === 'ganancias').reduce((count, current) => count + Number(current.monto), 0)
+        const porCategoriaGasto = porCategoria.filter(operacion => operacion.tipo === 'gastos').reduce((count, current) => count + Number(current.monto), 0)
+
+        divTotalCategoria.innerHTML +=
+            `<div class="columns">
+                <div class="column is-3 negrita"> ${categoria.nombre} </div>
+                <div class="column is-3" style="color:green; font-weight: 600;">+${porCategoriaGanancia}</div>
+                <div class="column is-3" style="color:red; font-weight: 600;">-${porCategoriaGasto}</div>
+                <div class="column is-3 negrita  ${porCategoriaGanancia > porCategoriaGasto ? "green" : "red"}">${porCategoriaGanancia - porCategoriaGasto}</div>
+            </div>`
+    })
+}
+
+
 // TOTALES POR MES
 
 // const totalPorMes = arr => {
@@ -542,33 +609,6 @@ const crearCategoria = () => {
     // }
 //   }
 
-// TOTAL POR CATEGORIA 
-
-const divTotalCategoria = document.getElementById('total-categoria')
-
-    const totalesPorCategoria = (operaciones, categorias) => {
-        divTotalCategoria.innerHTML = ""
-        categorias.forEach(categoria => { 
-            const porCategoria = operaciones.filter(operacion => operacion.categoria === categoria.nombre)
-            const porCategoriaGanancia = porCategoria.filter(operacion => operacion.tipo === 'ganancias').reduce((count, current) => count + Number(current.monto), 0)
-            const porCategoriaGasto = porCategoria.filter(operacion => operacion.tipo === 'gastos').reduce((count, current) => count + Number(current.monto), 0)
-            console.log(`La categoria ${categoria.nombre} su gasto es de: ${porCategoriaGasto}`)
-            console.log(`La categoria ${categoria.nombre} su ganacia es de: ${porCategoriaGanancia}`)
-            console.log(`El balance de la categoria  ${categoria.nombre} es de ${porCategoriaGanancia - porCategoriaGasto}`)
-            divTotalCategoria.innerHTML +=
-            `<div class="columns">
-                <div class="column is-3 negrita"> ${categoria.nombre} </div>
-                <div class="column is-3" style="color:green; font-weight: 600;">+${porCategoriaGanancia}</div>
-                <div class="column is-3" style="color:red; font-weight: 600;">-${porCategoriaGasto}</div>
-                <div class="column is-3 negrita  ${porCategoriaGanancia > porCategoriaGasto ? "green" : "red"}">${porCategoriaGanancia - porCategoriaGasto}</div>
-            </div>`
-        })
-        // for (let i = 0; i < categorias.length; i++) {
-            
-        // }
-        // console.log(operaciones)
-        // console.log(categorias)
-    }
 
 // --------------------------
 //      Inicializar
