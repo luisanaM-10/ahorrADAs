@@ -23,6 +23,8 @@ const contenedorFiltros = document.getElementById('contenedor-filtros'); // cont
 const selects = document.getElementsByClassName('select-categorias'); // selects de categorias
 const contenedorCategorias = document.getElementById('categorias'); // contenedor de categorias
 const inputCategoria = document.getElementById('categoria-input'); // input de categoria
+const inputEditarCategoria = document.getElementById('input-editar-categoria') // input de editar categoria
+const divEditarCategorias = document.getElementById('div-editar-categoria') // div de editar categorias
 
 
 const btnBalance = document.getElementById("btn-balance"); // btn de balance
@@ -39,6 +41,7 @@ const btnAgregarCategoria = document.getElementById('agregar-categoria'); // btn
 const btnCancelarEdicion = document.getElementById('btn-cancelar-editar'); // btn de cancelar operación editada (div de editar operación)
 const btnEnviarEdicion = document.getElementById('btn-enviar-editar-operacion'); // btn de enviar operación editada (div de editar operación)
 const btnOcultarFiltros = document.getElementById('ocultar-filtro-btn');  // btn de ocultar filtros (section de balance)
+const btnEnviarCategoriaEditada = document.getElementById('enviar-categoria-editada')
 // ---------------------------------------
 //            NavBar
 // ---------------------------------------
@@ -376,7 +379,6 @@ let categorias = JSON.parse(localStorage.getItem('categorias')) || [
 
 // pintar las categorias en los selects
 const generarCategorias = () => {
-    // selects.innerHTML = '';
     for (let j = 0; j < selects.length; j++) {
         selects[j].innerHTML = "";
       }
@@ -405,56 +407,56 @@ const pintarCategorias = () => {
             </div>
         </div>`
     }
-    const btnEliminarCategoria = document.querySelectorAll('.btn-eliminar-categoria')
-    btnEliminarCategoria.forEach(btn => {
+// EDITAR CATEGORIA
+const btnEditarCategoria = document.querySelectorAll('.btn-editar-categoria') // btn de editar categoria
+btnEditarCategoria.forEach(btn => {
     btn.addEventListener('click', e => {
-        // ELIMINAR CATEGORIA
-        const arregloSinCategoria = categorias.filter(categoria  => categoria.id !== e.target.dataset.id)
-        // ELIMINAR OPERACIÓN A LA VEZ 
-        const categoriaAEliminar = categorias.find((categoria) => categoria.id === e.target.dataset.id).nombre;
-        const operacionEliminada = operaciones.filter((operacion) => operacion.categoria !== categoriaAEliminar);
-        actualizarArreglos(arregloSinCategoria, operacionEliminada)
-    })
+        sectionCategorias.classList.add('oculto')
+        divEditarCategorias.classList.remove('oculto')
+        categoriaAEditar = categorias.filter((categoria) => categoria.id === e.target.dataset.id);
+        categoriaAEditar.forEach((categoria) => {inputEditarCategoria.value = categoria.nombre});        
 })
-// const btnEditarCategoria = document.querySelectorAll('.btn-editar-categoria')
-// btnEditarCategoria.forEach(btn => {
-//     btn.addEventListener('click', e => {
-//         sectionCategorias.classList.add('oculto')
-//         document.getElementById('div-editar-categoria').classList.remove('oculto')
-//         categoriaAEditar = categorias.filter((categoria) => categoria.id === e.target.dataset.id);
-//         categoriaAEditar.forEach((categoria) => {
-//             inputEditarCategoria.value = categoria.nombre;
-//           });
-          
-//             btnEnviarEdicion.addEventListener ('click', (e) =>{ const cambioCategoria = categorias.filter(
-//               (categoria) => categoria.id === categoriaAEditar[0].id
-//             );
-        
-//             const editarOpAsociadas = (arr) => {
-//               arr.forEach((operacionX) => {
-//                 if( operaciones.categoria ===  categoriaAEditar[0].nombre){
-//                     operaciones.categoria = inputEditarCategoria.value
-//                   }
-//                   })
-//                 localStorage.setItem("operaciones", JSON.stringify(arr));
-//                 const nuevasOperaciones = JSON.parse(localStorage.getItem("operaciones"));
-//                 pintarOperaciones(nuevasOperaciones);
-//               };
-          
-//               editarOpAsociadas(operaciones)
-        
-//             const filtrada = cambioCategoria[0];
-//             filtrada.nombre = inputEditarCategoria.value;
-//             const accionEditar = categorias.map((categoria) =>
-//               categoria.id === categoriaAEditar[0].id ? filtrada : categoria
-//             );
-//             localStorage.setItem("categorias", JSON.stringify(accionEditar));
-//             categorias = JSON.parse(localStorage.getItem("categorias"));
-//             pintarCategorias(categorias);
-//             generarCategorias(categorias);
-//           });
-// })
-// })
+})
+
+btnEnviarCategoriaEditada.addEventListener("click", (e) => {
+  sectionCategorias.classList.remove("oculto");
+  divEditarCategorias.classList.add("oculto");
+
+  const cambioCategoria = categorias.filter((categoria) => categoria.id === categoriaAEditar[0].id);
+
+  const editarOperacionesAsociadas = (arr) => {
+    arr.forEach((operacionAEditarTambien) => {
+      if (operacionAEditarTambien.categoria === categoriaAEditar[0].nombre) {
+        operacionAEditarTambien.categoria = inputEditarCategoria.value;
+      }
+    });
+    localStorage.setItem("operaciones", JSON.stringify(arr));
+    const nuevasOperaciones = JSON.parse(localStorage.getItem("operaciones"));
+    pintarOperaciones(nuevasOperaciones);
+  };
+  
+  editarOperacionesAsociadas(operaciones);
+
+  const filtrada = cambioCategoria[0];
+  filtrada.nombre = inputEditarCategoria.value;
+  const accionEditar = categorias.map((categoria) =>categoria.id === categoriaAEditar[0].id ? filtrada : categoria);
+  localStorage.setItem("categorias", JSON.stringify(accionEditar));
+  categorias = JSON.parse(localStorage.getItem("categorias"));
+  pintarCategorias(categorias);
+  generarCategorias(categorias);
+});
+// ELIMINAR CATEGORIA
+const btnEliminarCategoria = document.querySelectorAll('.btn-eliminar-categoria') // btn de eliminar categoria 
+btnEliminarCategoria.forEach(btn => {
+btn.addEventListener('click', e => {
+    // ELIMINAR CATEGORIA
+    const arregloSinCategoria = categorias.filter(categoria  => categoria.id !== e.target.dataset.id)
+    // ELIMINAR OPERACIÓN A LA VEZ 
+    const categoriaAEliminar = categorias.find((categoria) => categoria.id === e.target.dataset.id).nombre;
+    const operacionEliminada = operaciones.filter((operacion) => operacion.categoria !== categoriaAEliminar);
+    actualizarArreglos(arregloSinCategoria, operacionEliminada)
+})
+})
 }
 
 const actualizarArreglos = (arrCategorias, arrOperaciones) => {
@@ -470,6 +472,8 @@ const actualizarArreglos = (arrCategorias, arrOperaciones) => {
     operaciones = JSON.parse(localStorage.getItem('operaciones'));
     pintarOperaciones(operaciones)
 }
+
+
 
 // crear una categoria nueva
 const crearCategoria = () => {
