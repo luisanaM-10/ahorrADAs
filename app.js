@@ -58,6 +58,7 @@ const mostarBalance = (e) => {
     sectionReportes.classList.add("oculto");
     divNuevaOp.classList.add("oculto");
     divEditarOperacion.classList.add('oculto');
+    conReporte.classList.add('oculto');
 }
 btnBalance.addEventListener("click", mostarBalance)
 btnBalance2.addEventListener("click", mostarBalance)
@@ -68,6 +69,8 @@ const mostarCategoria = (e) => {
     sectionReportes.classList.add("oculto");
     divNuevaOp.classList.add("oculto");
     divEditarOperacion.classList.add('oculto');
+    conReporte.classList.add('oculto')
+    conReporte.classList.add('oculto');
 }
 btnCategorias.addEventListener("click", mostarCategoria)
 btnCategorias2.addEventListener("click", mostarCategoria)
@@ -86,7 +89,8 @@ const mostarReporte = (e) => {
         conReporte.classList.remove('oculto')
         sectionReportes.classList.add('oculto')
     }
-    totalPorMes(operaciones)
+    // totalPorMes(operaciones)
+    totalesPorCategoria(operaciones, categorias)
 }
 btnReportes.addEventListener("click", mostarReporte)
 btnReportes2.addEventListener("click", mostarReporte)
@@ -488,30 +492,83 @@ const crearCategoria = () => {
 //      Reportes
 // ----------------------
 
-// total por mes
+// TOTALES POR MES
 
 // const totalPorMes = arr => {
-//     const mesesSinRepetir = [...new Set(arr.map(operacion =>operacion.fecha.split('/')[1]))].sort()
+//     const mesesSinRepetir = [...new Set(arr.map((operacion) =>`${new Date(operacion.fecha).getMonth() + 1}/${new Date(operacion.fecha).getFullYear()}`)),].sort();
 
-//       for (let i = 0; i < mesesSinRepetir.length; i++) { // 06, 07 , 07 , 08 , 07  === 06
-
-//       const operacionesPorMes = arr.filter(operacion => operacion.fecha.split('/')[1] === mesesSinRepetir[i])
-
-//     //   const porTipoGanancia = operacionesPorMes.filter(operacion => operacion.tipo === 'ganancias').reduce((prev, current) => prev + Number(current.monto) ,0)
-//     const porTipoGanancia = totalGanancia(operacionesPorMes)
-
-//     //   const porTipoGasto = operacionesPorMes.filter(operacion => operacion.tipo === 'gastos').reduce((prev, current) => prev + Number(current.monto) ,0);
-//     const porTipoGasto =   totalGastos(operacionesPorMes)
-      
-//       console.log(`Esto sería del mes ${mesesSinRepetir[i]} tenemos el total de Ganancia de: ${porTipoGanancia}`)
-//       console.log(`Esto sería del mes ${mesesSinRepetir[i]} tenemos el total de Gasto de: ${porTipoGasto}`)
-
-//     console.log(mesesSinRepetir)
+//     for (let i = 0; i < mesesSinRepetir.length; i++) {
+//         const operacionesPorMes = arr.filter((operacion) =>`${new Date(operacion.fecha).getMonth() + 1}/${new Date(operacion.fecha).getFullYear()}` === mesesSinRepetir[i]);
+//         const porTipoGanancia = operacionesPorMes.filter((operacion) => operacion.tipo === "ganancias").reduce((prev, current) =>prev + Number(current.monto), 0);
+//         const porTipoGasto = operacionesPorMes.filter((operacion) => operacion.tipo === "gastos").reduce((prev, current) => prev + Number(current.monto), 0);
+    
+//         console.log(`mes:${mesesSinRepetir[i]}`)
+//         console.log(`ganancia: ${porTipoGanancia}` )
+//         console.log(`gasto: ${porTipoGasto}` )
+//         console.log(`resumen: ${porTipoGanancia - porTipoGasto}`)
 //     }
+    // --------------------------------------------------------------------------------------
+//     const meses = arr.map(operacion => operacion.fecha.split('/')[1])
+    
+    // const mesesSinRepetir = [...new Set(meses)]
+
+    //   for (let i = 0; i < mesesSinRepetir.length; i++) { 
+    //   const operacionesPorMes = arr.filter(operacion => operacion.fecha.split('/')[1] === mesesSinRepetir[i])
+
+    //   const porTipoGanancia = operacionesPorMes.filter(operacion => operacion.tipo === 'ganancias').reduce((prev, current) => prev + Number(current.monto) ,0)
+
+    //   const porTipoGasto = operacionesPorMes.filter(operacion => operacion.tipo === 'gastos').reduce((prev, current) => prev + Number(current.monto) ,0);
+    //   console.log(`Esto sería del mes ${mesesSinRepetir[i]} tenemos el total de Ganancia de: ${porTipoGanancia}`)
+    //   console.log(`Esto sería del mes ${mesesSinRepetir[i]} tenemos el total de Gasto de: ${porTipoGasto}`)
+
+// ------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// 
+    // const mesesSinRepetir = [...new Set(arr.map(operacion =>operacion.fecha.split('/')[1]))].sort()
+
+    //   for (let i = 0; i < mesesSinRepetir.length; i++) { // 06, 07 , 07 , 08 , 07  === 06
+
+    //   const operacionesPorMes = arr.filter(operacion => operacion.fecha.split('/')[1] === mesesSinRepetir[i])
+
+    //   const porTipoGanancia = operacionesPorMes.filter(operacion => operacion.tipo === 'ganancias').reduce((prev, current) => prev + Number(current.monto) ,0)
+    // const porTipoGanancia = totalGanancia(operacionesPorMes)
+
+    //   const porTipoGasto = operacionesPorMes.filter(operacion => operacion.tipo === 'gastos').reduce((prev, current) => prev + Number(current.monto) ,0);
+    // const porTipoGasto =   totalGastos(operacionesPorMes)
+      
+    //   console.log(`Esto sería del mes ${mesesSinRepetir[i]} tenemos el total de Ganancia de: ${porTipoGanancia}`)
+    //   console.log(`Esto sería del mes ${mesesSinRepetir[i]} tenemos el total de Gasto de: ${porTipoGasto}`)
+
+    // console.log(mesesSinRepetir)
+    // }
 //   }
 
-// total por categoria
+// TOTAL POR CATEGORIA 
 
+const divTotalCategoria = document.getElementById('total-categoria')
+
+    const totalesPorCategoria = (operaciones, categorias) => {
+        divTotalCategoria.innerHTML = ""
+        categorias.forEach(categoria => { 
+            const porCategoria = operaciones.filter(operacion => operacion.categoria === categoria.nombre)
+            const porCategoriaGanancia = porCategoria.filter(operacion => operacion.tipo === 'ganancias').reduce((count, current) => count + Number(current.monto), 0)
+            const porCategoriaGasto = porCategoria.filter(operacion => operacion.tipo === 'gastos').reduce((count, current) => count + Number(current.monto), 0)
+            console.log(`La categoria ${categoria.nombre} su gasto es de: ${porCategoriaGasto}`)
+            console.log(`La categoria ${categoria.nombre} su ganacia es de: ${porCategoriaGanancia}`)
+            console.log(`El balance de la categoria  ${categoria.nombre} es de ${porCategoriaGanancia - porCategoriaGasto}`)
+            divTotalCategoria.innerHTML +=
+            `<div class="columns">
+                <div class="column is-3 negrita"> ${categoria.nombre} </div>
+                <div class="column is-3" style="color:green; font-weight: 600;">+${porCategoriaGanancia}</div>
+                <div class="column is-3" style="color:red; font-weight: 600;">-${porCategoriaGasto}</div>
+                <div class="column is-3 negrita  ${porCategoriaGanancia > porCategoriaGasto ? "green" : "red"}">${porCategoriaGanancia - porCategoriaGasto}</div>
+            </div>`
+        })
+        // for (let i = 0; i < categorias.length; i++) {
+            
+        // }
+        // console.log(operaciones)
+        // console.log(categorias)
+    }
 
 // --------------------------
 //      Inicializar

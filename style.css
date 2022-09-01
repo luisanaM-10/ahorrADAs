@@ -9,6 +9,7 @@ body{
     background-color: rgb(222, 222, 222);
 }
 
+
 /*------------
     NAV
 -------------*/
@@ -252,7 +253,7 @@ img{
 
 .over-flow-mio{
     overflow: auto;
-    /* height: 600px; */
+    height: 98vh;
 }
 .negrita{
     font-weight: 600;
