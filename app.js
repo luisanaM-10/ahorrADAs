@@ -41,7 +41,9 @@ const btnAgregarCategoria = document.getElementById('agregar-categoria'); // btn
 const btnCancelarEdicion = document.getElementById('btn-cancelar-editar'); // btn de cancelar operación editada (div de editar operación)
 const btnEnviarEdicion = document.getElementById('btn-enviar-editar-operacion'); // btn de enviar operación editada (div de editar operación)
 const btnOcultarFiltros = document.getElementById('ocultar-filtro-btn');  // btn de ocultar filtros (section de balance)
-const btnEnviarCategoriaEditada = document.getElementById('enviar-categoria-editada')
+const btnEnviarCategoriaEditada = document.getElementById('enviar-categoria-editada') // btn de enviar categoria editada 
+const btnCancelarEdicionCategoria = document.getElementById('cancelar-salir-editar') // btn de salir de editar categoria (cancelar)
+
 // ---------------------------------------
 //            NavBar
 // ---------------------------------------
@@ -434,7 +436,7 @@ btnEnviarCategoriaEditada.addEventListener("click", (e) => {
     const nuevasOperaciones = JSON.parse(localStorage.getItem("operaciones"));
     pintarOperaciones(nuevasOperaciones);
   };
-  
+
   editarOperacionesAsociadas(operaciones);
 
   const filtrada = cambioCategoria[0];
@@ -473,7 +475,12 @@ const actualizarArreglos = (arrCategorias, arrOperaciones) => {
     pintarOperaciones(operaciones)
 }
 
+// Función de cancelar/salir de editar categoria
+btnCancelarEdicionCategoria.addEventListener('click', (e) => {
+    divEditarCategorias.classList.add('oculto');
+    sectionCategorias.classList.remove('oculto')
 
+})
 
 // crear una categoria nueva
 const crearCategoria = () => {
