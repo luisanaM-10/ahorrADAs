@@ -508,12 +508,12 @@ const mayorCategoria = (arr) => {
     categorias.forEach(categoria => {
         // mayor ganancia
     const porCategoriaGanancia = arr.filter(operacion => operacion.tipo === 'ganancias').sort((a, b) => Number(b.monto) - Number(a.monto));
-    document.getElementById('categoria-mayor-resumen').innerHTML = `<span style="color: green;font-weight: 600;">+$${porCategoriaGanancia[0].monto}</span>`
+    document.getElementById('categoria-mayor-resumen').innerHTML = `<span class="green">$${porCategoriaGanancia[0].monto}</span>`
     document.getElementById('categoria-mayor-nombre').innerHTML = `<span class="tag is-primary is-light">${porCategoriaGanancia[0].categoria}</span>`
 
     // mayor gasto
     const porCategoriaGasto = arr.filter(operacion => operacion.tipo === 'gastos').sort((a, b) => Number(b.monto) - Number(a.monto));
-    document.getElementById('categoria-menor-resumen').innerHTML = `<span style="color: red;font-weight: 600;">-$${porCategoriaGasto[0].monto}</span>`
+    document.getElementById('categoria-menor-resumen').innerHTML = `<span class="red">$${porCategoriaGasto[0].monto}</span>`
     document.getElementById('categoria-menor-nombre').innerHTML = `<span class="tag is-primary is-light">${porCategoriaGasto[0].categoria}</span>`
     // console.log(porCategoriaGanancia[i].monto - porCategoriaGasto[i].monto)
     // const balanceCategoria = porCategoriaGanancia - porCategoriaGasto;
@@ -559,6 +559,7 @@ const totalesPorCategoria = (operaciones, categorias) => {
 // TOTALES POR MES
 
 const totalPorMes = arr => { 
+    let balancePorMeses = []
     let str = '';
     const meses = [...new Set(arr.map(operacion => `${new Date(operacion.fecha).getMonth() + 1}/${new Date(operacion.fecha).getFullYear()}`)),].sort(); // sacamos los meses del arr de operaciones
 
@@ -581,14 +582,22 @@ const totalPorMes = arr => {
         <div class="column is-3 ${filtroGanancia > filtroGasto ? "green" : "red"}">$${(filtroGanancia - filtroGasto)}</div>
     </div>`
     document.getElementById('total-por-mes').innerHTML = str;
+
+    const nuevoObjeto = {
+        mes: meses[i],
+        ganancia: filtroGanancia,
+        gasto: filtroGasto,
+        balance: filtroGanancia - filtroGasto,
+      };
+      balancePorMeses.push(nuevoObjeto);
     } 
+const MesMayorGanancia = balancePorMeses.filter((operacion) => operacion.ganancia).sort(function(a, b){return b.ganancia - a.ganancia})
+    document.getElementById('mayor-balance-nombre').innerHTML = `<span class="negrita">${MesMayorGanancia[0].mes}</span>`
+    document.getElementById('mayor-balance-monto').innerHTML = `<span class="green">$${MesMayorGanancia[0].ganancia}</span>`
+    const MesMayorGasto = balancePorMeses.filter((operacion) => operacion.gasto).sort(function(a, b){return b.gasto - a.gasto})
+    document.getElementById('menor-balance-nombre').innerHTML = `<span class="negrita">${MesMayorGasto[0].mes}</span>`
+    document.getElementById('menor-balance-monto').innerHTML = `<span class="red">$${MesMayorGasto[0].gasto}</span>`
 }
-
-
-// *************************************************************************************************
-
-
-
 
 
 // --------------------------
