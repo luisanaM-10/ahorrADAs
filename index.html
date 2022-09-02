@@ -36,19 +36,19 @@
                 </a>
             </div>
 
-            <div id="navbarBasicExample" class="navbar-menu">
+            <div id="navbarBasicExample" class="navbar-menu" aria-label="btn balance">
                 <div class="navbar-end ">
                     <a class="navbar-item has-text-white" id="btn-balance">
                         <i class="fa-solid fa-chart-line"></i>
                         Balance
                     </a>
 
-                    <a class="navbar-item has-text-white" id="btn-categorias">
+                    <a class="navbar-item has-text-white" id="btn-categorias" aria-label="btn categoria">
                         <i class="fa-solid fa-tag"></i>
                         Categorías
                     </a>
 
-                    <a class="navbar-item has-text-white" id="btn-reportes">
+                    <a class="navbar-item has-text-white" id="btn-reportes" aria-label="btn reportes">
                         <i class="fa-solid fa-chart-pie"></i>
                         Reportes
                     </a>
@@ -58,17 +58,17 @@
 
             <!-- nav burger -->
             <div class="oculto" id="div-burger">
-                <a class="navbar-item" id="btn-balance2">
+                <a class="navbar-item" id="btn-balance2" aria-label="btn balance">
                     <i class="fa-solid fa-chart-line"></i>
                     Balance
                 </a>
 
-                <a class="navbar-item" id="btn-categorias2">
+                <a class="navbar-item" id="btn-categorias2" aria-label="btn categorias">
                     <i class="fa-solid fa-tag"></i>
                     Categorías
                 </a>
 
-                <a class="navbar-item" id="btn-reportes2">
+                <a class="navbar-item" id="btn-reportes2" aria-label="btn reportes">
                     <i class="fa-solid fa-chart-pie"></i>
                     Reportes
                 </a>
@@ -105,13 +105,13 @@
                     <!-- filtros -->
                     <div class="box div-filtro">
                         <div class="flex-contenedor">
-                            <h2>Filtros</h2>
-                            <a id="ocultar-filtro-btn">Ocultar filtros</a>
+                            <h2 aria-label="filtros">Filtros</h2>
+                            <a id="ocultar-filtro-btn" aria-label=" ocultar filtros btn">Ocultar filtros</a>
                         </div>
 
                         <div id="contenedor-filtros">
                             <div>
-                                <h3>Tipo</h3>
+                                <h3 aria-label="filtrar por tipo">Tipo</h3>
                                 <select id="filtro-tipo">
                                     <option value="todos">Todos</option>
                                     <option value="gastos">Gastos</option>
@@ -120,19 +120,19 @@
                             </div>
 
                             <div>
-                                <h3>Categoría</h3>
+                                <h3 aria-label="filtrar por categoría">Categoría</h3>
                                 <select class="select-categorias filtro-categoria" id="filtro-categoria">
                                     <option value="servicios">Servicios</option>
                                 </select>
                             </div>
 
                             <div>
-                                <h3>Desde</h3>
+                                <h3 aria-label="filtrar por fecha">Desde</h3>
                                 <input type="date" id="filtro-fecha">
                             </div>
 
                             <div>
-                                <h3>Ordenar por</h3>
+                                <h3 aria-label="ordenar por">Ordenar por</h3>
                                 <select id="filtro-de-orden">
                                     <option value="mas_reciente">Más recientes</option>
                                     <option value="">Menos recientes</option>
@@ -151,7 +151,7 @@
                     <div class="container box contenedor-operaciones">
                         <div class="column titulo-operaciones ">
                             <h2>Operaciones</h2>
-                            <a class="button has-background-info btn-operacion has-text-white" id="btn-operacion"> +
+                            <a class="button has-background-info btn-operacion has-text-white" id="btn-operacion" aria-label="crear nueva operación btn"> +
                                 Nueva operación</a>
                         </div>
 
@@ -267,8 +267,8 @@
                 <div>
                     <h3 style="margin-top: 10px;">Nombre</h3>
                     <div style="margin-bottom: 20px; display: flex; justify-content: space-between;">
-                        <input type="text" class="input-categorias" id="categoria-input">
-                        <button class="button is-success" id="agregar-categoria">Agregar</button>
+                        <input type="text" class="input-categorias" id="categoria-input" aria-label="nombre de categoría a agregar">
+                        <button class="button is-success" id="agregar-categoria" aria-label="agregar categoría">Agregar</button>
                     </div>
                 </div>
                 <div id="categorias"></div>
@@ -280,7 +280,7 @@
     <div class="oculto" id="div-editar-categoria" style=" margin-top: 30px;">
         <div class="container" style="max-width: 600px; padding: 0 10px;">
             <div class="box">
-            <h2>Editar categoria</h2>
+            <h2>Editar categoría</h2>
 
             <div class="panel-control">
                 <h3>Nombre</h3>
@@ -323,14 +323,14 @@
                     </div>
                     <div class="panel-flex columns">
                         <div class="column is-6 negrita">categoría con mayor ganancias</div>
-                        <div class="column is-3"></div>
-                        <div class="column is-3"></div>
+                        <div class="column is-3" id="categoria-mayor-nombre"></div>
+                        <div class="column is-3" id="categoria-mayor-resumen"></div>
                     </div>
 
                     <div class="panel-flex columns ">
                         <div class="column is-6 negrita">Categoría con mayor gasto</div>
-                        <div class="column is-3"></div>
-                        <div class="column is-3"></div>
+                        <div class="column is-3" id="categoria-menor-nombre"></div>
+                        <div class="column is-3" id="categoria-menor-resumen"></div>
                     </div>
 
                     <div class="panel-flex columns">
