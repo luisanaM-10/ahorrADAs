@@ -92,9 +92,7 @@ const mostarReporte = (e) => {
     mayorCategoria(operaciones)
     totalesPorCategoria(operaciones, categorias)
     totalPorMes(operaciones)
-    // menorCategoria(operaciones)
-    // balanceMayor(operaciones)
-    // mesMayorGananciaYGasto(operaciones)
+    balanceMayor(operaciones)
 }
 
 btnReportes.addEventListener("click", mostarReporte)
@@ -390,7 +388,7 @@ const generarCategorias = () => {
 
 // Mostrar las categorias en la section de categoria
 const pintarCategorias = () => {
-    contenedorCategorias.innerHTML = ""
+    contenedorCategorias.innerHTML = "";
     for (let i = 0; i < categorias.length; i++) {
         contenedorCategorias.innerHTML +=
         `<div class="column"> 
@@ -498,42 +496,53 @@ const crearCategoria = () => {
 // ----------------------
 
 // RESUMEN
+const balanceMayor = arr => { 
+    let balanceCategorias = [];
 
-// categoria con mayor ganancia 
-const mayorCategoria = (arr) => {
-    let montoMayorBalance  = 0;
-    let categoriaMayorBalance = ""
-    // const balance = [...porCategoriaGanancia, ...porCategoriaGasto]
+    //  sacamos las categorias del arr de operaciones
+    const categoriasDeOperaciones = [...new Set(operaciones.map(operacion => operacion.categoria))]
+
+    for (let i = 0; i < categoriasDeOperaciones.length; i++) {
+     // sacamos los objetos por mes
+    const objetoCategoria = arr.filter(operacion => operacion.categoria  === categoriasDeOperaciones[i]) // sacamos los objetos por mes
     
+    const filtroGanancia = objetoCategoria.filter(operacion => operacion.tipo === 'ganancias').reduce((count, current) => count + Number(current.monto), 0) // filtramos las ganancias de esos categoriasDeOperaciones
+    const filtroGasto = objetoCategoria.filter(operacion => operacion.tipo === 'gastos').reduce((count, current) => count + Number(current.monto), 0) // filtramos los gastos de esos categoriasDeOperaciones
+    
+    // console.log(categoriasDeOperaciones[i])
+    // console.log(filtroGanancia)
+    // console.log(filtroGasto)
+    // console.log(filtroGanancia - filtroGasto)
+
+    const nuevoObjeto = {
+        nombreCategoria: categoriasDeOperaciones[i],
+        ganancia: filtroGanancia,
+        gasto: filtroGasto,
+        balance: filtroGanancia - filtroGasto,
+      };
+      balanceCategorias.push(nuevoObjeto);
+    } 
+const categoriaMayorBalance = balanceCategorias.filter((operacion) => operacion.balance).sort(function(a, b){return b.balance - a.balance})
+// console.log(categoriaMayorBalance)
+    document.getElementById('categoria-mayor-balance').innerHTML = `<span class="tag is-primary is-light">${categoriaMayorBalance[0].nombreCategoria}</span>`
+    document.getElementById('categoria-mayor-balance-monto').innerHTML = `<span class="green">$${categoriaMayorBalance[0].balance}</span>`
+}
+
+
+// Categoria con mayor ganancia 
+const mayorCategoria = (arr) => {
     categorias.forEach(categoria => {
         // mayor ganancia
     const porCategoriaGanancia = arr.filter(operacion => operacion.tipo === 'ganancias').sort((a, b) => Number(b.monto) - Number(a.monto));
     document.getElementById('categoria-mayor-resumen').innerHTML = `<span class="green">$${porCategoriaGanancia[0].monto}</span>`
     document.getElementById('categoria-mayor-nombre').innerHTML = `<span class="tag is-primary is-light">${porCategoriaGanancia[0].categoria}</span>`
-
     // mayor gasto
     const porCategoriaGasto = arr.filter(operacion => operacion.tipo === 'gastos').sort((a, b) => Number(b.monto) - Number(a.monto));
     document.getElementById('categoria-menor-resumen').innerHTML = `<span class="red">$${porCategoriaGasto[0].monto}</span>`
     document.getElementById('categoria-menor-nombre').innerHTML = `<span class="tag is-primary is-light">${porCategoriaGasto[0].categoria}</span>`
-    // console.log(porCategoriaGanancia[i].monto - porCategoriaGasto[i].monto)
-    // const balanceCategoria = porCategoriaGanancia - porCategoriaGasto;
 })
 }
 
-
-// const balance = []
-
-// const balanceMayor = (arr) => {
-//     categorias.forEach(operaciones =>{
-//     const porCategoriaGanancia = arr.filter(operacion => operacion.tipo === 'ganancias').sort((a, b) => Number(b.monto) - Number(a.monto));
-//     const porCategoriaGasto = arr.filter(operacion => operacion.tipo === 'gastos').sort((a, b) => Number(b.monto) - Number(a.monto));
-//     // const balance = [...porCategoriaGasto, ...porCategoriaGanancia]
-//     const totalBalance =  balance.map((balance) => porCategoriaGanancia - porCategoriaGasto) 
-//     console.log(totalBalance)
-//     })
-//     // const operacionActualizada = operaciones.map((operacion) =>operacion.id === opeEditada.id ? opeEditada : operacion);
-
-// }
 
 // TOTAL POR CATEGORIA 
 const divTotalCategoria = document.getElementById('total-categoria') // total por categoria (reportes)
@@ -560,28 +569,20 @@ const totalesPorCategoria = (operaciones, categorias) => {
 
 const totalPorMes = arr => { 
     let balancePorMeses = []
-    let str = '';
+    document.getElementById('total-por-mes').innerHTML = "";
     const meses = [...new Set(arr.map(operacion => `${new Date(operacion.fecha).getMonth() + 1}/${new Date(operacion.fecha).getFullYear()}`)),].sort(); // sacamos los meses del arr de operaciones
-
     for (let i = 0; i < meses.length; i++) {
     const objetoPorMes = arr.filter(operacion => `${new Date(operacion.fecha).getMonth() + 1}/${new Date(operacion.fecha).getFullYear()}` === meses[i]) // sacamos los objetos por mes
-  
-        const filtroGanancia = objetoPorMes.filter(operacion => operacion.tipo === 'ganancias').reduce((count, current) => count + Number(current.monto), 0) // filtramos las ganancias de esos meses
-        
-        const filtroGasto = objetoPorMes.filter(operacion => operacion.tipo === 'gastos').reduce((count, current) => count + Number(current.monto), 0) // filtramos los gastos de esos meses
-// console.log(meses)
-// console.log(objetoPorMes)
-// console.log(filtroGanancia)
-// console.log(filtroGasto)
-
-    str += `
-    <div class="columns">
+    const filtroGanancia = objetoPorMes.filter(operacion => operacion.tipo === 'ganancias').reduce((count, current) => count + Number(current.monto), 0) // filtramos las ganancias de esos meses
+    const filtroGasto = objetoPorMes.filter(operacion => operacion.tipo === 'gastos').reduce((count, current) => count + Number(current.monto), 0) // filtramos los gastos de esos meses
+    
+    document.getElementById('total-por-mes').innerHTML += 
+    `<div class="columns">
         <div class="column is-3 negrita">${meses[i]}</div>
         <div class="column is-3 green">$${filtroGanancia}</div>
         <div class="column is-3 red">$${filtroGasto}</div>
         <div class="column is-3 ${filtroGanancia > filtroGasto ? "green" : "red"}">$${(filtroGanancia - filtroGasto)}</div>
-    </div>`
-    document.getElementById('total-por-mes').innerHTML = str;
+    </div>`;
 
     const nuevoObjeto = {
         mes: meses[i],
