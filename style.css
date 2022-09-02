@@ -145,7 +145,7 @@ img{
 
 .green{
     color: green;
-    font-weight: 600;
+    font-weight: 700;
 }
 
 .green::before{
@@ -154,7 +154,7 @@ img{
 
 .red{
     color: red;
-    font-weight: 600;
+    font-weight: 700;
 }
 
 .red::before{
@@ -257,7 +257,7 @@ img{
 }
 .negrita{
     font-weight: 600;
-    font-size: 16px;
+    font-size: 17px;
 }
 /*-------------------
     media query
