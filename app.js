@@ -1,8 +1,20 @@
+const divBurger = document.getElementById("div-burger"); // div burger que contiene los btn para las section (header con nav)
+// ***********************************************
+//            SECTION  DE BALANCE
+// ***********************************************
 const sectionBalance = document.getElementById("section-balance"); // section de balance
-const sectionCategorias = document.getElementById("section-categorias"); // section de categorías
-const sectionReportes = document.getElementById("section-reportes"); // section de reportes
-const divBurger = document.getElementById("div-burger"); // div burger que contiene los btn para las section
-const divNuevaOp = document.getElementById("div-operaciones"); // div de +Nueva operación
+// BALANCE
+const spanGastos = document.getElementById('total-gastos'); // span de total de gastos (div de balance / section de balance)
+const spanlGanancias = document.getElementById('total-ganancias'); // span de total de ganancias (div de balance / section de balance)
+const spanResumenTotal = document.getElementById('resumen-total'); // span de total (div de balance / section de balance)
+// FILTROS
+const contenedorFiltros = document.getElementById('contenedor-filtros'); // contenedor de filtros (section de balance)
+const filtroCategoria = document.getElementById('filtro-categoria'); // filtro de por categoria
+const filtroTipo = document.getElementById('filtro-tipo');  // filtro de por tipo
+const filtroOrden = document.getElementById('filtro-de-orden'); // filtro de por orden 
+const filtroFecha = document.getElementById('filtro-fecha'); // filtro de por fecha
+// OPERACIONES
+const divNuevaOp = document.getElementById("div-operaciones"); // div de +NUEVA operación
 const inputDescripcion = document.getElementById('input-descripcion'); // input de descripción (+Nueva operación)
 const inputMonto = document.getElementById('input-monto'); // input de monto (+Nueva operación)
 const tipoDeOperacion = document.getElementById('select-tipo'); // select de tipo (+Nueva operación)
@@ -10,27 +22,30 @@ const categoriaOperacion = document.getElementById('categoria-select-operacion')
 const inputFecha = document.getElementById('input-fecha'); // input de fecha (+Nueva operación)
 const divSinOperaciones = document.getElementById('sin-operaciones'); // div a mostrar cuando no hay operaciones 
 const divConOperaciones = document.getElementById('con-operaciones'); // div a mostrar cuando hay operaciones 
-const divEditarOperacion = document.getElementById('div-editar-operaciones'); // div de editar operación
+const divEditarOperacion = document.getElementById('div-editar-operaciones'); // div de EDITAR operación
 const editarInputDescripcion = document.getElementById('editar-input-descripcion'); // input de editar descripción (div de editar operación)
 const editarInputMonto = document.getElementById('editar-input-monto'); // input de editar monto (div de editar operación)
 const editarSelectTipo = document.getElementById('editar-select-tipo'); // select de editar tipo de operación (div de editar operación)
 const editarSelectCategoria = document.getElementById('editar-select-categoria'); // select de editar categotia (div de editar operación)
 const editarInputFecha = document.getElementById('editar-input-fecha'); // input de editar fecha (div de editar operación)
-const spanGastos = document.getElementById('total-gastos'); // span de total de gastos (div de balance / section de balance)
-const spanlGanancias = document.getElementById('total-ganancias'); // span de total de ganancias (div de balance / section de balance)
-const spanResumenTotal = document.getElementById('resumen-total'); // span de total (div de balance / section de balance)
-const contenedorFiltros = document.getElementById('contenedor-filtros'); // contenedor de filtros (section de balance)
+// ***********************************************
+//            SECTION DE CATEGORÍAS
+// ***********************************************
+const sectionCategorias = document.getElementById("section-categorias"); // section de categorías
 const selects = document.getElementsByClassName('select-categorias'); // selects de categorias
 const contenedorCategorias = document.getElementById('categorias'); // contenedor de categorias
 const inputCategoria = document.getElementById('categoria-input'); // input de categoria
-const inputEditarCategoria = document.getElementById('input-editar-categoria') // input de editar categoria
 const divEditarCategorias = document.getElementById('div-editar-categoria') // div de editar categorias
-
-const filtroCategoria = document.getElementById('filtro-categoria'); // filtro de por categoria
-const filtroTipo = document.getElementById('filtro-tipo');  // filtro de por tipo
-const filtroOrden = document.getElementById('filtro-de-orden') // filtro de por orden 
-const filtroFecha = document.getElementById('filtro-fecha') // filtro de por fecha
-
+const inputEditarCategoria = document.getElementById('input-editar-categoria') // input de editar categoria
+// ***********************************************
+//            SECTION DE REPORTES
+// ***********************************************
+const sectionReportes = document.getElementById("section-reportes"); // section de reportes
+const divTotalCategoria = document.getElementById('total-categoria') // total por categoria (reportes)
+// ***********************************************
+//            BOTONES (btns)
+// ***********************************************
+// HEADER CON NAV
 const btnBalance = document.getElementById("btn-balance"); // btn de balance
 const btnCategorias = document.getElementById("btn-categorias"); // btn de categorías
 const btnReportes = document.getElementById("btn-reportes"); // btn de reportes
@@ -38,20 +53,23 @@ const btnBurger = document.getElementById("menu-burger"); // btn de menu burger
 const btnBalance2 = document.getElementById("btn-balance2"); // btn de balance
 const btnCategorias2 = document.getElementById("btn-categorias2"); // btn de categorías
 const btnReportes2 = document.getElementById("btn-reportes2"); // btn de reportes
+// OPERACIONES
 const btnOperacion = document.getElementById("btn-operacion"); // btn de +Nueva operación
 const btnEnviar = document.getElementById('btn-enviar-operacion'); // btn de enviar operación (+Nueva operación)
 const btnCancelar = document.getElementById('btn-cancelar-operacion'); // btn de cancelar operación (+Nueva operación)
-const btnAgregarCategoria = document.getElementById('agregar-categoria'); // btn de agregar categorias
 const btnCancelarEdicion = document.getElementById('btn-cancelar-editar'); // btn de cancelar operación editada (div de editar operación)
 const btnEnviarEdicion = document.getElementById('btn-enviar-editar-operacion'); // btn de enviar operación editada (div de editar operación)
-const btnOcultarFiltros = document.getElementById('ocultar-filtro-btn');  // btn de ocultar filtros (section de balance)
-const btnEnviarCategoriaEditada = document.getElementById('enviar-categoria-editada') // btn de enviar categoria editada 
+// CATEGORIAS
+const btnAgregarCategoria = document.getElementById('agregar-categoria'); // btn de agregar categorias
 const btnCancelarEdicionCategoria = document.getElementById('cancelar-salir-editar') // btn de salir de editar categoria (cancelar)
+const btnEnviarCategoriaEditada = document.getElementById('enviar-categoria-editada') // btn de enviar categoria editada 
+// SECTION BALANCE
+const btnOcultarFiltros = document.getElementById('ocultar-filtro-btn');  // btn de ocultar filtros (section de balance)
 
 // ---------------------------------------
 //            NavBar
 // ---------------------------------------
-// ocultar y mostar section 
+// ocultar y mostrar section de balance
 const mostarBalance = (e) => {
     sectionBalance.classList.remove("oculto");
     sectionCategorias.classList.add("oculto");
@@ -63,6 +81,7 @@ const mostarBalance = (e) => {
 btnBalance.addEventListener("click", mostarBalance)
 btnBalance2.addEventListener("click", mostarBalance)
 
+// ocultar y mostrar section de categoria
 const mostarCategoria = (e) => {
     sectionBalance.classList.add("oculto");
     sectionCategorias.classList.remove("oculto");
@@ -75,6 +94,7 @@ const mostarCategoria = (e) => {
 btnCategorias.addEventListener("click", mostarCategoria)
 btnCategorias2.addEventListener("click", mostarCategoria)
 
+// ocultar y mostrar section de reportes
 const conReporte = document.getElementById('con-reporte'); // vista con reporte 
 const mostarReporte = (e) => {
     sectionBalance.classList.add("oculto");
@@ -94,7 +114,6 @@ const mostarReporte = (e) => {
     totalPorMes(operaciones)
     balanceMayor(operaciones)
 }
-
 btnReportes.addEventListener("click", mostarReporte)
 btnReportes2.addEventListener("click", mostarReporte)
 
@@ -104,7 +123,7 @@ btnBurger.addEventListener("click", (e) => {
 })
 
 // -----------------------------------------
-//            Operaciones
+//            OPERACIONES
 // -----------------------------------------
 // btn de + nueva operacion
 btnOperacion.addEventListener("click", (e) => {
@@ -112,8 +131,9 @@ btnOperacion.addEventListener("click", (e) => {
     divNuevaOp.classList.remove("oculto");
 })
 
-let operaciones = JSON.parse(localStorage.getItem('operaciones')) || [];
+let operaciones = JSON.parse(localStorage.getItem('operaciones')) || []; // ARR DE OPERACIONES
 
+// mostrar div con operaciones o sin operaciones 
 const mostrarOperaciones = (arr) => {
     if (!arr.length) {
         divSinOperaciones.classList.remove('oculto');
@@ -193,7 +213,7 @@ const pintarOperaciones = (arr) => {
             alertify.success("¡Operación eliminada con exito!");
         });
     });
-    // función de eliminar operación
+    // función de editar operación
     const btnEditar = document.querySelectorAll(".btn-editar");
     btnEditar.forEach((btn) => {
         btn.addEventListener('click', (e) => {
@@ -252,32 +272,26 @@ btnCancelarEdicion.addEventListener('click', (e) => {
     divEditarOperacion.classList.add("oculto");
 })
 
-// -----------------------
-//        Balance
-// -----------------------
+// --------------------------
+//          BALANCE
+// --------------------------
 
 // total de ganancias
-const totalGanancia = arr => 
-arr.filter(operacion => operacion.tipo === 'ganancias').reduce((prev, current) => 
-prev + Number(current.monto) ,0);
-
+const totalGanancia = arr => arr.filter(operacion => operacion.tipo === 'ganancias').reduce((prev, current) => prev + Number(current.monto) ,0);
 
 // total de gastos
-const totalGastos = arr => 
-   arr.filter(operacion => operacion.tipo === 'gastos').reduce((prev, current) => 
-   prev + Number(current.monto) ,0);
+const totalGastos = arr => arr.filter(operacion => operacion.tipo === 'gastos').reduce((prev, current) => prev + Number(current.monto) ,0);
 
-// -----------------------
-//        Filtros 
-// -----------------------
-
+// -------------------------
+//         FILTROS 
+// -------------------------
  // btn de ocultar filtros
 btnOcultarFiltros.addEventListener('click', (e) => {
     contenedorFiltros.classList.toggle("oculto")
 })
-// filtros
-let capiaOperaciones = [...operaciones]
 
+// filtros
+let capiaOperaciones = [...operaciones] // copia del arr de operaciones
 const filtros = (e) => {
     const porCategoria = filtroCategoria.value;
     const porTipo = filtroTipo.value;
@@ -286,93 +300,71 @@ const filtros = (e) => {
 
     let operaciones = capiaOperaciones;
 
-    
     if (porCategoria !== 'todas') {
         operaciones = operaciones.filter(operacion => operacion.categoria === porCategoria)
     }
-
     if (porTipo !== 'todos') {
         operaciones = operaciones.filter(operacion => operacion.tipo === porTipo)
     }
-
     if (porOrden === "menor_monto") {
-        operaciones = operaciones.sort(
-            (a, b) => Number(a.monto) - Number(b.monto)
-        );
+        operaciones = operaciones.sort((a, b) => Number(a.monto) - Number(b.monto));
     }
     if (porOrden === "mayor_monto") {
-        operaciones = operaciones.sort(
-            (a, b) => Number(b.monto) - Number(a.monto)
-        );
+        operaciones = operaciones.sort((a, b) => Number(b.monto) - Number(a.monto));
     }
     if (porOrden === 'A/Z') {
         operaciones = operaciones.sort((a, b) => {
-            if (a.descripcion.toLowerCase() < b.descripcion.toLowerCase()) {
-                return -1
-            }
-        })
+            if (a.descripcion.toLowerCase() < b.descripcion.toLowerCase()) { return -1 }})
     }
     if (porOrden === 'Z/A') {
         operaciones = operaciones.sort((a, b) => {
-            if (a.descripcion.toLowerCase() > b.descripcion.toLowerCase()) {
-                return -1
-            }
-        })
+            if (a.descripcion.toLowerCase() > b.descripcion.toLowerCase()) { return -1 }})
     }
     if (porOrden === 'mas_reciente') {
-        operaciones = operaciones.sort((a, b) =>
-            new Date(a.fecha) - new Date(b.fecha))
+        operaciones = operaciones.sort((a, b) => new Date(a.fecha) - new Date(b.fecha))
     }
-
     if (ordenDesde !== new Date()) {
         operaciones = operaciones.filter(operacion => operacion.fecha == ordenDesde)
     }
     pintarOperaciones(operaciones)
 }
-
 filtroCategoria.addEventListener('change', filtros);
 filtroTipo.addEventListener('change', filtros);
 filtroOrden.addEventListener('change', filtros);
 filtroFecha.addEventListener('change', filtros);
 
-
-
 // ------------------------------------------
-//              Categorías
+//              CATEGORÍAS
 // ------------------------------------------
+// Arr de categorías
 let categorias = JSON.parse(localStorage.getItem('categorias')) || [
     {
         id: uuidv4(),
         nombre: 'Comida'
     },
-
     {
         id: uuidv4(),
         nombre: 'Servicios'
     },
-    
     {
         id: uuidv4(),
         nombre: 'Salidas'
-    },
-    
+    }, 
     {
         id: uuidv4(),
         nombre: 'Transporte'
     },
-    
     {
         id: uuidv4(),
         nombre: 'Educación'
     },
-    
     {
         id: uuidv4(),
         nombre: 'Trabajo'
     }
 ]
 
-// pintar las categorias en los selects
+// pintar las categorías en los selects
 const generarCategorias = () => {
     for (let j = 0; j < selects.length; j++) {
         selects[j].innerHTML = "";
@@ -388,7 +380,7 @@ const generarCategorias = () => {
     }
 }
 
-// Mostrar las categorias en la section de categoria
+// Mostrar las categorías en la section de categoria
 const pintarCategorias = () => {
     contenedorCategorias.innerHTML = "";
     for (let i = 0; i < categorias.length; i++) {
@@ -445,7 +437,6 @@ btnEnviarCategoriaEditada.addEventListener("click", (e) => {
 const btnEliminarCategoria = document.querySelectorAll('.btn-eliminar-categoria') // btn de eliminar categoria 
 btnEliminarCategoria.forEach(btn => {
 btn.addEventListener('click', e => {
-    // ELIMINAR CATEGORIA
     const arregloSinCategoria = categorias.filter(categoria  => categoria.id !== e.target.dataset.id)
     // ELIMINAR OPERACIÓN A LA VEZ 
     const categoriaAEliminar = categorias.find((categoria) => categoria.id === e.target.dataset.id).nombre;
@@ -469,14 +460,14 @@ const actualizarArreglos = (arrCategorias, arrOperaciones) => {
     pintarOperaciones(operaciones)
 }
 
-// Función de cancelar/salir de editar categoria
+// Función de cancelar/salir de editar categoría
 btnCancelarEdicionCategoria.addEventListener('click', (e) => {
     divEditarCategorias.classList.add('oculto');
     sectionCategorias.classList.remove('oculto')
 
 })
 
-// crear una categoria nueva
+// crear una categoria nueva categoría
 const crearCategoria = () => {
     btnAgregarCategoria.addEventListener('click', (e) => {
       document.getElementById('categorias').innerHTML = ''
@@ -493,29 +484,19 @@ const crearCategoria = () => {
 }
 
 
-// ----------------------
-//      Reportes
-// ----------------------
+// ---------------------------
+//         REPORTES
+// --------------------------
 
 // RESUMEN
 const balanceMayor = arr => { 
     let balanceCategorias = [];
-
-    //  sacamos las categorias del arr de operaciones
+    //  sacamos las categorÍas del arr de operaciones
     const categoriasDeOperaciones = [...new Set(operaciones.map(operacion => operacion.categoria))]
-
     for (let i = 0; i < categoriasDeOperaciones.length; i++) {
-     // sacamos los objetos por mes
-    const objetoCategoria = arr.filter(operacion => operacion.categoria  === categoriasDeOperaciones[i]) // sacamos los objetos por mes
-    
-    const filtroGanancia = objetoCategoria.filter(operacion => operacion.tipo === 'ganancias').reduce((count, current) => count + Number(current.monto), 0) // filtramos las ganancias de esos categoriasDeOperaciones
-    const filtroGasto = objetoCategoria.filter(operacion => operacion.tipo === 'gastos').reduce((count, current) => count + Number(current.monto), 0) // filtramos los gastos de esos categoriasDeOperaciones
-    
-    // console.log(categoriasDeOperaciones[i])
-    // console.log(filtroGanancia)
-    // console.log(filtroGasto)
-    // console.log(filtroGanancia - filtroGasto)
-
+    const objetoCategoria = arr.filter(operacion => operacion.categoria  === categoriasDeOperaciones[i]) // sacamos los objetos por categoría
+    const filtroGanancia = objetoCategoria.filter(operacion => operacion.tipo === 'ganancias').reduce((count, current) => count + Number(current.monto), 0) // filtramos las ganancias de categoriasDeOperaciones
+    const filtroGasto = objetoCategoria.filter(operacion => operacion.tipo === 'gastos').reduce((count, current) => count + Number(current.monto), 0) // filtramos los gastos de categoriasDeOperaciones
     const nuevoObjeto = {
         nombreCategoria: categoriasDeOperaciones[i],
         ganancia: filtroGanancia,
@@ -524,12 +505,10 @@ const balanceMayor = arr => {
       };
       balanceCategorias.push(nuevoObjeto);
     } 
-const categoriaMayorBalance = balanceCategorias.filter((operacion) => operacion.balance).sort(function(a, b){return b.balance - a.balance})
-// console.log(categoriaMayorBalance)
+    const categoriaMayorBalance = balanceCategorias.filter((operacion) => operacion.balance).sort(function(a, b){return b.balance - a.balance})
     document.getElementById('categoria-mayor-balance').innerHTML = `<span class="tag is-primary is-light">${categoriaMayorBalance[0].nombreCategoria}</span>`
     document.getElementById('categoria-mayor-balance-monto').innerHTML = `<span class="green">$${categoriaMayorBalance[0].balance}</span>`
 }
-
 
 // Categoria con mayor ganancia 
 const mayorCategoria = (arr) => {
@@ -547,8 +526,6 @@ const mayorCategoria = (arr) => {
 
 
 // TOTAL POR CATEGORIA 
-const divTotalCategoria = document.getElementById('total-categoria') // total por categoria (reportes)
-
 const totalesPorCategoria = (operaciones, categorias) => {
     divTotalCategoria.innerHTML = ""
     categorias.forEach(categoria => {
@@ -568,7 +545,6 @@ const totalesPorCategoria = (operaciones, categorias) => {
 
 
 // TOTALES POR MES
-
 const totalPorMes = arr => { 
     let balancePorMeses = []
     document.getElementById('total-por-mes').innerHTML = "";
@@ -601,7 +577,6 @@ const MesMayorGanancia = balancePorMeses.filter((operacion) => operacion.gananci
     document.getElementById('menor-balance-nombre').innerHTML = `<span class="negrita">${MesMayorGasto[0].mes}</span>`
     document.getElementById('menor-balance-monto').innerHTML = `<span class="red">$${MesMayorGasto[0].gasto}</span>`
 }
-
 
 // --------------------------
 //      Inicializar
