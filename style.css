@@ -299,6 +299,12 @@ img{
     p{
         font-size: 16px;
     }
-}
+    .div-responsive-resumen{
+        display: flex;
+    }
+     .letra-responsive-resumen{
+        font-size: 14px;
+    } 
+}  
 
 

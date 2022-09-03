@@ -534,11 +534,11 @@ const totalesPorCategoria = (operaciones, categorias) => {
         const porCategoriaGasto = porCategoria.filter(operacion => operacion.tipo === 'gastos').reduce((count, current) => count + Number(current.monto), 0)
 
         divTotalCategoria.innerHTML +=
-            `<div class="columns">
-                <div class="column is-3 negrita">${categoria.nombre} </div>
-                <div class="column is-3 green">$${porCategoriaGanancia}</div>
-                <div class="column is-3 red">$${porCategoriaGasto}</div>
-                <div class="column is-3  ${porCategoriaGanancia > porCategoriaGasto ? "green" : "red"}">${porCategoriaGanancia - porCategoriaGasto}</div>
+            `<div class="columns div-responsive-resumen">
+                <div class="column is-3 negrita letra-responsive-resumen">${categoria.nombre} </div>
+                <div class="column is-3 green letra-responsive-resumen" >$${porCategoriaGanancia}</div>
+                <div class="column is-3 red letra-responsive-resumen">$${porCategoriaGasto}</div>
+                <div class="column is-3 letra-responsive-resumen ${porCategoriaGanancia > porCategoriaGasto ? "green" : "red"}">${porCategoriaGanancia - porCategoriaGasto}</div>
             </div>`
     })
 }
@@ -555,11 +555,11 @@ const totalPorMes = arr => {
     const filtroGasto = objetoPorMes.filter(operacion => operacion.tipo === 'gastos').reduce((count, current) => count + Number(current.monto), 0) // filtramos los gastos de esos meses
     
     document.getElementById('total-por-mes').innerHTML += 
-    `<div class="columns">
-        <div class="column is-3 negrita">${meses[i]}</div>
-        <div class="column is-3 green">$${filtroGanancia}</div>
-        <div class="column is-3 red">$${filtroGasto}</div>
-        <div class="column is-3 ${filtroGanancia > filtroGasto ? "green" : "red"}">$${(filtroGanancia - filtroGasto)}</div>
+    `<div class="columns div-responsive-resumen">
+        <div class="column is-3 negrita letra-responsive-resumen">${meses[i]}</div>
+        <div class="column is-3 green letra-responsive-resumen">$${filtroGanancia}</div>
+        <div class="column is-3 red letra-responsive-resumen">$${filtroGasto}</div>
+        <div class="column is-3 letra-responsive-resumen ${filtroGanancia > filtroGasto ? "green" : "red"}">$${(filtroGanancia - filtroGasto)}</div>
     </div>`;
 
     const nuevoObjeto = {
