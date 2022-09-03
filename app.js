@@ -286,9 +286,7 @@ const filtros = (e) => {
 
     let operaciones = capiaOperaciones;
 
-    if (ordenDesde !== new Date()) {
-        operaciones = operaciones.filter(operacion => operacion.fecha == ordenDesde)
-    }
+    
     if (porCategoria !== 'todas') {
         operaciones = operaciones.filter(operacion => operacion.categoria === porCategoria)
     }
@@ -324,6 +322,10 @@ const filtros = (e) => {
     if (porOrden === 'mas_reciente') {
         operaciones = operaciones.sort((a, b) =>
             new Date(a.fecha) - new Date(b.fecha))
+    }
+
+    if (ordenDesde !== new Date()) {
+        operaciones = operaciones.filter(operacion => operacion.fecha == ordenDesde)
     }
     pintarOperaciones(operaciones)
 }
